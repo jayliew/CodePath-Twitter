@@ -7,12 +7,27 @@
 //
 
 import UIKit
+import BDBOAuth1Manager
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        TwitterClient.sharedInstance?.fetchAccessToken(withPath: "oauth/access_token",
+                                                       method: "POST",
+                                                       requestToken: BDBOAuth1Credential(queryString: url.query),
+                                                       success: { (accessToken: BDBOAuth1Credential?) in
+                                                            print("--- ACCESS token success")
+                                                        },
+                                                       failure: { (error: Error?) in
+                                                            print("--- ACCESS token fail")
+                                                        }
+        )
+        return true
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
