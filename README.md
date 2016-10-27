@@ -1,6 +1,6 @@
 # Project 3 - Twitter Client
 
-Yelp Client is a basic Yelp search app that consumes data from Yelp's API.
+Build a simple Twitter client.
 
 Time spent: **X** hours spent in total
 
