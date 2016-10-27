@@ -7,19 +7,44 @@
 //
 
 import UIKit
+import BDBOAuth1Manager
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
     }
 
+    @IBAction func onLogin(_ sender: AnyObject) {
+        TwitterClient.sharedInstance!.requestSerializer.clearAuthorizationHeader()
+        
+        TwitterClient.sharedInstance!.fetchRequestToken(
+            withPath: "oauth/request_token",
+            method: "GET",
+            callbackURL: URL(string: "cptwitterdemo://oauth"),
+            scope: nil,
+            success: { (requestToken: BDBOAuth1Credential?) in
+                print("--- GOT access token")
+                if let token = requestToken {
+                    if let request = token.token {
+                        let authURL = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(request)")
+                        UIApplication.shared.open(authURL!)
+                    }else{
+                        print("--- failed to get access token")
+                    }
+                }else{
+                    print("--- failed to get access token")
+                }
+                
+            }) { (error: Error?) in
+                print("--- failed to get access token")
+            }
+        
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
-
 }
 
