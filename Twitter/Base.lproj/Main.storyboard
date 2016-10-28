@@ -6,10 +6,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -31,9 +31,50 @@
                             <constraint firstItem="t7g-FF-rJZ" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sXg-0V-PZL"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="f7M-nJ-rcP" kind="presentation" identifier="loginSegue" id="OA1-d2-35v"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="190" y="123"/>
+        </scene>
+        <!--Tweets View Controller-->
+        <scene sceneID="Cja-my-Fkw">
+            <objects>
+                <viewController id="d2T-yL-XUL" customClass="TweetsViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="9SB-SJ-jvC"/>
+                        <viewControllerLayoutGuide type="bottom" id="jdZ-39-Qj8"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="VDe-mp-olX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="dvD-7N-qJL"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xqd-Tx-3mb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1558" y="123"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="cD4-1E-c9U">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="f7M-nJ-rcP" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="HLR-Ix-oL3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="d2T-yL-XUL" kind="relationship" relationship="rootViewController" id="hae-H1-Kli"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="u2Q-pr-RIT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="885.60000000000002" y="122.78860569715144"/>
         </scene>
     </scenes>
 </document>
