@@ -21,7 +21,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                        requestToken: BDBOAuth1Credential(queryString: url.query),
                                                        success: { (accessToken: BDBOAuth1Credential?) in
                                                             print("--- ACCESS token success")
-                                                        },
+                                                        TwitterClient.sharedInstance?.requestSerializer.saveAccessToken(accessToken)
+                                                        
+                                                        /*
+                                                        TwitterClient.sharedInstance?.get(
+                                                            "1.1/account/verify_credentials.json",
+                                                            parameters: nil,
+                                                            progress: { (progress: Progress) in
+                                                                print("--- progress downloading")
+                                                            },
+                                                            success: { (dataTask: URLSessionDataTask, response: Any?) in
+                                                                print("--- SUCCESS GET")
+                                                                print(response)
+                                                            },
+                                                            failure: { (dataTask: URLSessionDataTask?, error: Error) in
+                                                                print("--- GET FAILURE")
+                                                        })
+                                                        */
+                                                        
+                                                        
+                                                        }, // success fetch access
                                                        failure: { (error: Error?) in
                                                             print("--- ACCESS token fail")
                                                         }

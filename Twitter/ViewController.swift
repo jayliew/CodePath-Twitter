@@ -17,6 +17,9 @@ class ViewController: UIViewController {
     }
 
     @IBAction func onLogin(_ sender: AnyObject) {
+        
+        //TwitterClient.sharedInstance?.loginWithBlock(){}
+        
         TwitterClient.sharedInstance!.requestSerializer.clearAuthorizationHeader()
         
         TwitterClient.sharedInstance!.fetchRequestToken(
@@ -30,6 +33,7 @@ class ViewController: UIViewController {
                     if let request = token.token {
                         let authURL = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(request)")
                         UIApplication.shared.open(authURL!)
+                        
                     }else{
                         print("--- failed to get access token")
                     }
@@ -41,7 +45,10 @@ class ViewController: UIViewController {
                 print("--- failed to get access token")
             }
         
-    }
+        
+
+        
+    } // onLogin
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
