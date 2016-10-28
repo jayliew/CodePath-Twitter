@@ -34,16 +34,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                                 print("--- SUCCESS GET")
                                                                 
                                                                 if let userDictionary = response as? NSDictionary{
-                                                                    if let unwrappedDict = userDictionary as NSDictionary!{
-                                                                        let user = User(initDictionary: unwrappedDict)
-                                                                        
-                                                                        print("--- username: " + user.name!)
-                                                                    }
+                                                                    let user = User(initDictionary: userDictionary)
+                                                                    print("--- username: " + user.name!)
                                                                 }
-                                                            },
+                                                                
+                                                            }, // success
                                                             failure: { (dataTask: URLSessionDataTask?, error: Error) in
                                                                 print("--- GET FAILURE")
-                                                        })
+                                                            } // failure
+                                                        ) // get
                                                         
                                                         }, // success fetch access
                                                        failure: { (error: Error?) in
