@@ -44,10 +44,7 @@ class ViewController: UIViewController {
             }) { (error: Error?) in
                 print("--- failed to get access token")
             }
-        
-        
-
-        
+                
     } // onLogin
     
     override func didReceiveMemoryWarning() {

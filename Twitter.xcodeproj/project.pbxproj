@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		72EE314DA09B39A16EEA0A6D /* Pods_Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CAF156367CCC19304EE7DBE /* Pods_Twitter.framework */; };
+		E13E9CEE1DC2FB9100EB03DA /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13E9CEC1DC2FB9100EB03DA /* User.swift */; };
+		E13E9CEF1DC2FB9100EB03DA /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13E9CED1DC2FB9100EB03DA /* Tweet.swift */; };
 		E1EC61061DC2521600CD2C71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC61051DC2521600CD2C71 /* AppDelegate.swift */; };
 		E1EC61081DC2521600CD2C71 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC61071DC2521600CD2C71 /* ViewController.swift */; };
 		E1EC610B1DC2521600CD2C71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1EC61091DC2521600CD2C71 /* Main.storyboard */; };
@@ -20,6 +22,8 @@
 		3CAF156367CCC19304EE7DBE /* Pods_Twitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Twitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3ECB3F7276434C87D1111EC0 /* Pods-Twitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-Twitter/Pods-Twitter.release.xcconfig"; sourceTree = "<group>"; };
 		90539BD8943E56D25D896BD6 /* Pods-Twitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Twitter.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Twitter/Pods-Twitter.debug.xcconfig"; sourceTree = "<group>"; };
+		E13E9CEC1DC2FB9100EB03DA /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		E13E9CED1DC2FB9100EB03DA /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		E1EC61021DC2521600CD2C71 /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1EC61051DC2521600CD2C71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1EC61071DC2521600CD2C71 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +64,23 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		E13E9CEA1DC2FA4D00EB03DA /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E1EC61071DC2521600CD2C71 /* ViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		E13E9CEB1DC2FA5600EB03DA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E13E9CEC1DC2FB9100EB03DA /* User.swift */,
+				E13E9CED1DC2FB9100EB03DA /* Tweet.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		E1EC60F91DC2521600CD2C71 = {
 			isa = PBXGroup;
 			children = (
@@ -82,9 +103,10 @@
 		E1EC61041DC2521600CD2C71 /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				E13E9CEB1DC2FA5600EB03DA /* Models */,
+				E13E9CEA1DC2FA4D00EB03DA /* View Controllers */,
 				E1EC611C1DC25AD500CD2C71 /* API */,
 				E1EC61051DC2521600CD2C71 /* AppDelegate.swift */,
-				E1EC61071DC2521600CD2C71 /* ViewController.swift */,
 				E1EC61091DC2521600CD2C71 /* Main.storyboard */,
 				E1EC610C1DC2521600CD2C71 /* Assets.xcassets */,
 				E1EC610E1DC2521600CD2C71 /* LaunchScreen.storyboard */,
@@ -226,6 +248,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E13E9CEE1DC2FB9100EB03DA /* User.swift in Sources */,
+				E13E9CEF1DC2FB9100EB03DA /* Tweet.swift in Sources */,
 				E1EC61081DC2521600CD2C71 /* ViewController.swift in Sources */,
 				E1EC611B1DC25AB300CD2C71 /* TwitterClient.swift in Sources */,
 				E1EC61061DC2521600CD2C71 /* AppDelegate.swift in Sources */,

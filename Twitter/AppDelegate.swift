@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                             print("--- ACCESS token success")
                                                         TwitterClient.sharedInstance?.requestSerializer.saveAccessToken(accessToken)
                                                         
-                                                        /*
+                                                        
                                                         TwitterClient.sharedInstance?.get(
                                                             "1.1/account/verify_credentials.json",
                                                             parameters: nil,
@@ -32,13 +32,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                             },
                                                             success: { (dataTask: URLSessionDataTask, response: Any?) in
                                                                 print("--- SUCCESS GET")
-                                                                print(response)
+                                                                
+                                                                if let userDictionary = response as? NSDictionary{
+                                                                    if let unwrappedDict = userDictionary as NSDictionary!{
+                                                                        let user = User(initDictionary: unwrappedDict)
+                                                                        
+                                                                        print("--- username: " + user.name!)
+                                                                    }
+                                                                }
                                                             },
                                                             failure: { (dataTask: URLSessionDataTask?, error: Error) in
                                                                 print("--- GET FAILURE")
                                                         })
-                                                        */
-                                                        
                                                         
                                                         }, // success fetch access
                                                        failure: { (error: Error?) in
