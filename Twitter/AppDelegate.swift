@@ -14,19 +14,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        
+        // this function fires after Twitter's web site redirects user back to this app
         guard let client = TwitterClient.sharedInstance else {
             return true
         }
         
-        client.handleOpenUrl(url: url)
+        client.handleOpenUrl(url: url) // next, need to get access token
         return true
+        
     } //UIApplicationOpenURLOptionsKey
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        if User.currentUser != nil {
+            print("--- appdelegate: there is a current user")
+        }else{
+            print("--- appdelegate: there is no current user")
+        }
+        
         return true
     }
     

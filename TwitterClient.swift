@@ -48,32 +48,27 @@ class TwitterClient: BDBOAuth1SessionManager {
         
     } // homeTimeline
     
-    func currentAccount(){
+    func currentAccount(success: @escaping (User) -> (), failure: @escaping (Error?) -> ()){
         guard let client = TwitterClient.sharedInstance else {
             return
         }
         
         client.get(
-            "1.1/statuses/home_timeline.json",
-            //"1.1/account/verify_credentials.json",
+            "1.1/account/verify_credentials.json",
             parameters: nil,
             progress: { (progress: Progress) in
-                print("--- progress downloading")
+                print("--- progress downloading USER")
             },
             success: { (dataTask: URLSessionDataTask, response: Any?) in
-                print("--- SUCCESS GET")
-                
-                if let responseArray = response as? [Dictionary <String, Any>]{
-                    let tweets = Tweet.tweetsWithArray(dictionaries: responseArray)
-                    for t in tweets {
-                        print(t.text!)
-                    }
-                    
+                print("--- SUCCESS GET USER")
+                if let dict = response as? NSDictionary{
+                    let user = User(initDictionary: dict)
+                    success(user)
                 }
-                
             }, // success
             failure: { (dataTask: URLSessionDataTask?, error: Error) in
-                print("--- GET FAILURE")
+                print("--- GET FAILURE USER")
+                failure(error)
             } // failure
         ) // get data
         
@@ -90,7 +85,20 @@ class TwitterClient: BDBOAuth1SessionManager {
                                 success: { (accessToken: BDBOAuth1Credential?) in
                                     print("--- ACCESS token success")
                                     client.requestSerializer.saveAccessToken(accessToken)
-                                    self.loginSuccess?()
+                                    
+                                    client.currentAccount(
+                                        success: { (user: User) in
+                                            print("--- SUCCESS currentAccount()")
+                                            print(user)
+                                            User.currentUser = user
+                                            self.loginSuccess?()
+                                        },
+                                        failure: { (error: Error?) in
+                                            self.loginFailure?(error)
+                                        }
+                                    )
+                                    
+                                    //self.loginSuccess?()
             }, // success fetch access
             failure: { (error: Error?) in
                 if error != nil {
@@ -105,12 +113,12 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     func login(success:@escaping () -> (), failure:@escaping (Error?) -> ()){
         let client = TwitterClient.sharedInstance
-        loginSuccess = success
-        loginFailure = failure
+        loginSuccess = success // callback
+        loginFailure = failure // callback
         
         client?.requestSerializer.clearAuthorizationHeader()
         
-        TwitterClient.sharedInstance!.fetchRequestToken(
+        client?.fetchRequestToken(
             withPath: "oauth/request_token",
             method: "GET",
             callbackURL: URL(string: "cptwitterdemo://oauth"),
@@ -120,6 +128,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                 if let token = requestToken {
                     if let request = token.token {
                         let authURL = URL(string: "https://api.twitter.com/oauth/authorize?oauth_token=\(request)")
+                        // send user to Twitter's web site for auth
                         UIApplication.shared.open(authURL!)
                         
                     }else{

@@ -10,24 +10,24 @@ import UIKit
 import BDBOAuth1Manager
 
 class LoginViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
     }
-
+    
     @IBAction func onLogin(_ sender: AnyObject) {
         let client = TwitterClient.sharedInstance
         
         client?.login(
             success: {
-              () -> () in
-                print("--- SSUUUCCCESSSSSSSSS CALLBACK")
+                () -> () in
+                print("--- onLogin SSUUUCCCESSSSSSSSS CALLBACK - LOGIN AUTOMATICALLY")
                 self.performSegue(withIdentifier: "loginSegue", sender: nil)
             },
             failure: { (error: Error?) in
                 print(error?.localizedDescription)
-        })                
+        })
     } // onLogin
     
     override func didReceiveMemoryWarning() {
