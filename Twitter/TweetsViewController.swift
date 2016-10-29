@@ -15,16 +15,21 @@ class TweetsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        TwitterClient.sharedInstance?.homeTimeline(
+        guard let client = TwitterClient.sharedInstance else {
+            print("--- shared instance doesn't exist")
+            return
+        }
+        
+        client.homeTimeline(
             success: { (tweets: [Tweet]) -> () in
                 self.tweets = tweets
                 
                 for tweet in self.tweets!{
                     print(tweet.text)
                 }
-                
             },
             failure: { (error: Error?) -> () in
+                print("--- ERROR in getting home timeline" + error!.localizedDescription)
             }
         )
     }

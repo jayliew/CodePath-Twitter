@@ -28,20 +28,19 @@ class TwitterClient: BDBOAuth1SessionManager {
         
         client.get(
             "1.1/statuses/home_timeline.json",
-            //"1.1/statuses/home_timeline.json",
             parameters: nil,
             progress: { (progress: Progress) in
-                print("--- progress downloading")
+                print("--- progress downloading home timeline")
             },
             success: { (dataTask: URLSessionDataTask, response: Any?) in
-                print("--- SUCCESS GET")
+                print("--- SUCCESS GET home timeline")
                 if let responseArray = response as? [Dictionary <String, Any>]{
                     let tweets = Tweet.tweetsWithArray(dictionaries: responseArray)
                     success(tweets)
                 }
             }, // success
             failure: { (dataTask: URLSessionDataTask?, error: Error) in
-                print("--- GET FAILURE")
+                print("--- GET FAILURE home timeline")
                 failure(error)
             } // failure
         ) // get data
