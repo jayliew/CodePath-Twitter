@@ -36,6 +36,13 @@ class TweetCell: UITableViewCell {
             if let profileImageUrl = tweet.profileImageUrl {
                 self.profileImageView.setImageWith(profileImageUrl)
             }
+            
+            if let retweetedByName = tweet.retweetedByName{
+                topRetweetLabel.text = retweetedByName + " retweeted"
+            }else{
+                topRetweetLabel.isHidden = true
+                topRetweetImageView.isHidden = true
+            }
         }
     }
     

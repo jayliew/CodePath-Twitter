@@ -25,6 +25,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 120
+            
         client.homeTimeline(
             success: { (tweets: [Tweet]) -> () in
                 self.tweets = tweets

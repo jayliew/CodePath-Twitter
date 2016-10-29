@@ -18,6 +18,7 @@ class Tweet: NSObject {
     var screenName: String!
     var realName: String?
     var profileImageUrl: URL?
+    var retweetedByName: String?
     
     var user: Dictionary<String, Any>?
     
@@ -34,21 +35,52 @@ class Tweet: NSObject {
             timestamp = formatter.date(from: timestampString)
         } // timestampString
         
-        
-        if let user = dictionary["user"] as? Dictionary<String, Any> {
-            self.user = user
-            if let profileImageUrl = user["profile_image_url"] as? String{
-                if let realUrl = URL(string: profileImageUrl) {
-                    self.profileImageUrl = realUrl
+        if let rt_status = dictionary["retweeted_status"] as? Dictionary<String, Any>{
+            print("--- RETWEETED STATUS ")
+            
+            if let user = rt_status["user"] as? Dictionary<String, Any> {
+                self.user = user
+                print("--- USER OF TWEET ")
+                print(user["name"])
+                if let profileImageUrl = user["profile_image_url"] as? String{
+                    if let realUrl = URL(string: profileImageUrl) {
+                        self.profileImageUrl = realUrl
+                    }
+                }
+                if let screenName = user["screen_name"] as? String {
+                    self.screenName = screenName
+                }
+                if let realName = user["name"] as? String {
+                    self.realName = realName
                 }
             }
-            if let screenName = user["screen_name"] as? String {
-                self.screenName = screenName
+            
+            if let retweetedByUser = dictionary["user"] as? Dictionary<String, Any> {
+                if let realName = retweetedByUser["name"] as? String {
+                    self.retweetedByName = realName
+                }
             }
-            if let realName = user["name"] as? String {
-                self.realName = realName
-            }
-        } // user
+            
+        }else{
+            
+            if let user = dictionary["user"] as? Dictionary<String, Any> {
+                self.user = user
+                print("--- USER OF TWEET ")
+                print(user["name"])
+                if let profileImageUrl = user["profile_image_url"] as? String{
+                    if let realUrl = URL(string: profileImageUrl) {
+                        self.profileImageUrl = realUrl
+                    }
+                }
+                if let screenName = user["screen_name"] as? String {
+                    self.screenName = screenName
+                }
+                if let realName = user["name"] as? String {
+                    self.realName = realName
+                }
+            } // user
+            
+        }// rt_status else
         
     } // init
     

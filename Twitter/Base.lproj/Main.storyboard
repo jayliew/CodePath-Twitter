@@ -52,17 +52,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="200" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rX7-rS-dOT">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="120" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="rX7-rS-dOT">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="TweetCell" rowHeight="200" id="sTh-LT-qHG" customClass="TweetCell" customModule="Twitter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="343" height="200"/>
+                                        <rect key="frame" x="0.0" y="92" width="375" height="200"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sTh-LT-qHG" id="yiS-wk-wgd">
-                                            <frame key="frameInset" width="343" height="200"/>
+                                            <frame key="frameInset" width="375" height="199.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ueq-Nl-SQp" userLabel="Left Stack">
+                                                <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" misplaced="YES" axis="vertical" alignment="bottom" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="Ueq-Nl-SQp" userLabel="Left Stack">
+                                                    <frame key="frameInset" width="75" height="100"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet.png" translatesAutoresizingMaskIntoConstraints="NO" id="w7V-z6-Lyj">
                                                             <constraints>
@@ -79,35 +80,39 @@
                                                     </subviews>
                                                 </stackView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Q1i-WK-eOR" userLabel="Right Stack">
-                                                    <frame key="frameInset" minX="91" minY="8" width="247" height="179"/>
+                                                    <frame key="frameInset" width="276" height="184"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="pmarca retweeted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUz-dJ-3B7">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="pmarca retweeted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dUz-dJ-3B7">
+                                                            <frame key="frameInset" width="130" height="19"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="WQN-Di-XSN" userLabel="Name Date Stack">
+                                                        <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="WQN-Di-XSN" userLabel="Name Date Stack">
+                                                            <frame key="frameInset" minY="27" width="173" height="20"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="Jay Liew" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHj-0d-luf">
-                                                                    <frame key="frameInset" width="67" height="21"/>
+                                                                    <frame key="frameInset" width="67" height="20"/>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" ambiguous="YES" text="@jaysern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iyd-aH-2ju" userLabel="Screen Name">
-                                                                    <frame key="frameInset" minX="70" width="65" height="21"/>
+                                                                    <frame key="frameInset" minX="70" width="65" height="20"/>
                                                                     <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="34m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fk4-Vh-BuA">
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="34m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fk4-Vh-BuA">
+                                                                    <frame key="frameInset" minX="138" width="36" height="20"/>
                                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                             </subviews>
                                                         </stackView>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zb2-QG-Jg0">
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zb2-QG-Jg0">
+                                                            <frame key="frameInset" minY="55" height="99"/>
                                                             <string key="text">I'll B there til the 🌟 don't shine,til the heavens burst &amp; the words don't rhyme &amp; I know when I die,you'll B on my mind &amp; I'll ❤️you ALWAYS</string>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                             <nil key="textColor"/>
@@ -174,11 +179,12 @@
                                                 </stackView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Q1i-WK-eOR" firstAttribute="leading" secondItem="Ueq-Nl-SQp" secondAttribute="trailing" constant="5" id="9gV-vD-f6f"/>
-                                                <constraint firstAttribute="trailing" secondItem="Q1i-WK-eOR" secondAttribute="trailing" constant="8" id="Mzg-M1-eYg"/>
-                                                <constraint firstItem="Ueq-Nl-SQp" firstAttribute="leading" secondItem="yiS-wk-wgd" secondAttribute="leading" constant="8" id="USQ-vV-qIf"/>
-                                                <constraint firstItem="Q1i-WK-eOR" firstAttribute="top" secondItem="yiS-wk-wgd" secondAttribute="top" constant="8" id="Y2j-Vn-cuc"/>
-                                                <constraint firstItem="Ueq-Nl-SQp" firstAttribute="top" secondItem="yiS-wk-wgd" secondAttribute="top" constant="8" id="nrh-AT-EsB"/>
+                                                <constraint firstItem="Q1i-WK-eOR" firstAttribute="top" secondItem="yiS-wk-wgd" secondAttribute="topMargin" id="IQI-Hq-oIQ"/>
+                                                <constraint firstItem="Q1i-WK-eOR" firstAttribute="leading" secondItem="Ueq-Nl-SQp" secondAttribute="trailing" constant="8" id="UK7-ew-vuE"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="Q1i-WK-eOR" secondAttribute="bottom" id="gJb-aN-Ez9"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Q1i-WK-eOR" secondAttribute="trailing" id="idV-Xa-kYi"/>
+                                                <constraint firstItem="Ueq-Nl-SQp" firstAttribute="leading" secondItem="yiS-wk-wgd" secondAttribute="leadingMargin" id="ijS-1u-yAd"/>
+                                                <constraint firstItem="Ueq-Nl-SQp" firstAttribute="top" secondItem="yiS-wk-wgd" secondAttribute="topMargin" id="wSv-qU-iB9"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -198,10 +204,10 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="rX7-rS-dOT" secondAttribute="trailing" id="HQh-XZ-4jf"/>
-                            <constraint firstItem="rX7-rS-dOT" firstAttribute="top" secondItem="9SB-SJ-jvC" secondAttribute="bottom" id="Lg0-vI-huA"/>
-                            <constraint firstItem="rX7-rS-dOT" firstAttribute="leading" secondItem="VDe-mp-olX" secondAttribute="leadingMargin" id="UcJ-xG-Xlv"/>
-                            <constraint firstItem="jdZ-39-Qj8" firstAttribute="top" secondItem="rX7-rS-dOT" secondAttribute="bottom" id="vMv-nl-SIJ"/>
+                            <constraint firstItem="rX7-rS-dOT" firstAttribute="leading" secondItem="VDe-mp-olX" secondAttribute="leading" id="nXL-pz-GfM"/>
+                            <constraint firstItem="rX7-rS-dOT" firstAttribute="top" secondItem="9SB-SJ-jvC" secondAttribute="bottom" id="vAR-sC-7mE"/>
+                            <constraint firstAttribute="trailing" secondItem="rX7-rS-dOT" secondAttribute="trailing" id="vkE-2k-HEx"/>
+                            <constraint firstItem="jdZ-39-Qj8" firstAttribute="top" secondItem="rX7-rS-dOT" secondAttribute="bottom" id="wAo-5Z-XTA"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="dvD-7N-qJL">
