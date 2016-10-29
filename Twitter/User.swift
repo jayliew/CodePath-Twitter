@@ -18,6 +18,7 @@ class User: NSObject {
     var dictionary : Dictionary<String, Any>? // raw data for User
     
     static var _currentUser: User?
+    static let userDidLogoutNotification = "UserDidLogout"
     
     // Computed property
     class var currentUser: User? {

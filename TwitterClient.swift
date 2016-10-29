@@ -16,6 +16,7 @@ let twitterBaseURL = URL(string: "https://api.twitter.com")
 class TwitterClient: BDBOAuth1SessionManager {
     
     // Singleton
+    
     static let sharedInstance = TwitterClient(baseURL: twitterBaseURL, consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
     
     var loginSuccess: (() -> ())?
@@ -108,6 +109,12 @@ class TwitterClient: BDBOAuth1SessionManager {
             } // fail
         ) // fetchAccessToken
         
+    }
+    
+    func logout(){
+        User.currentUser = nil
+        deauthorize()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil)
     }
     
     func login(success:@escaping () -> (), failure:@escaping (Error?) -> ()){
