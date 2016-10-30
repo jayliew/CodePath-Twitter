@@ -13,6 +13,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     @IBOutlet weak var tableView: UITableView!
     
     var tweets: [Tweet]?
+    var client: TwitterClient!
+    let blueLogo = UIColor(red:0.00, green:0.67, blue:0.93, alpha:1.0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +22,11 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.delegate = self
         tableView.dataSource = self
         
-        guard let client = TwitterClient.sharedInstance else {
+        self.navigationController?.navigationBar.backgroundColor = blueLogo
+        
+        if let client = TwitterClient.sharedInstance {
+            self.client = client
+        }else{
             print("--- shared instance doesn't exist")
             return
         }
@@ -29,7 +35,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
-            
+        
         client.homeTimeline(
             success: { (tweets: [Tweet]) -> () in
                 self.tweets = tweets
@@ -42,7 +48,34 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             failure: { (error: Error?) -> () in
                 print("--- ERROR in getting home timeline" + error!.localizedDescription)
             }
-        )
+        ) // homeTimeline
+
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshControlAction), for: .valueChanged)
+        tableView.insertSubview(refreshControl, at: 0)
+
+    }
+    
+    @IBAction func onCompose(_ sender: AnyObject) {
+        
+    }
+    
+    func refreshControlAction(refreshControl: UIRefreshControl){
+        print("--- refreshing ... ")
+        
+        self.client.homeTimeline(
+            success: { (tweets: [Tweet]) -> () in
+                self.tweets = tweets
+                
+                for tweet in self.tweets!{
+                    print(tweet.text)
+                }
+                self.tableView.reloadData()
+            },
+            failure: { (error: Error?) -> () in
+                print("--- ERROR in getting home timeline" + error!.localizedDescription)
+            }
+        ) // homeTimeline
     }
     
     // MARK: UITableView Delegates
