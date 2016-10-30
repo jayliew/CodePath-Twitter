@@ -13,6 +13,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var charsLeftLabel: UILabel!
     @IBOutlet weak var submitButton: UIButton!
+    @IBOutlet weak var placeholderLabel: UILabel!
     
     var maxLength = 140
     
@@ -24,6 +25,11 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     
     func textViewDidChange(_ textView: UITextView) {
         if let text = textView.text {
+            if text.isEmpty {
+                placeholderLabel.isHidden = false
+            }else{
+                placeholderLabel.isHidden = true
+            }
             let charsLeft = maxLength - text.characters.count
             
             charsLeftLabel.text = "\(charsLeft)"
@@ -33,6 +39,10 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
                 charsLeftLabel.textColor = UIColor.black
             }
         }
+    } // textViewDidChange
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        placeholderLabel.isHidden = true
     }
     
     @IBAction func onSubmit(_ sender: AnyObject) {
@@ -44,10 +54,12 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         client.postTweet(
             tweet: textView.text,
             success: { () -> ()? in
-                print("--- CALLBACK FIRED: SUCCESSFULLY POSTED TWEET: \(textView.text)")
+                print("--- CALLBACK FIRED: SUCCESSFULLY POSTED TWEET: \(self.textView.text)")
+                self.dismiss(animated: true)
+                return Void()
             },
             failure: { (error: Error?) -> () in
-                print("--- FAILURE CALLBACK FIRED: TWEET NOT POSTED")
+                print("--- FAILURE CALLBACK FIRED: TWEET NOT POSTED: \(self.textView.text)")
                 if let error = error {
                     print(error.localizedDescription)
                 }
@@ -56,8 +68,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     } // onSubmit
     
     @IBAction func onCancel(_ sender: AnyObject) {
-        dismiss(animated: true) {
-        }
+        dismiss(animated: true) {}
     }
     
     override func didReceiveMemoryWarning() {

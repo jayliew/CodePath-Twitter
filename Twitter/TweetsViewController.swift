@@ -14,7 +14,12 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     var tweets: [Tweet]?
     var client: TwitterClient!
+    let refreshControl = UIRefreshControl()
     let blueLogo = UIColor(red:0.00, green:0.67, blue:0.93, alpha:1.0)
+    
+    override func viewWillAppear(_ animated: Bool) {
+        refreshControlAction(refreshControl: refreshControl)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,16 +55,11 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         ) // homeTimeline
 
-        let refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refreshControlAction), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
 
     }
-    
-    @IBAction func onCompose(_ sender: AnyObject) {
         
-    }
-    
     func refreshControlAction(refreshControl: UIRefreshControl){
         print("--- refreshing ... ")
         
@@ -76,6 +76,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print("--- ERROR in getting home timeline" + error!.localizedDescription)
             }
         ) // homeTimeline
+        
+        refreshControl.endRefreshing()
     }
     
     // MARK: UITableView Delegates

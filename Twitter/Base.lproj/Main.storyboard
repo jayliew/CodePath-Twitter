@@ -232,7 +232,6 @@
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RG9-qW-EqQ" userLabel="Tweet TextView">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <accessibility key="accessibilityConfiguration" hint="What's happening?"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="HDc-Ca-snN"/>
                                 </constraints>
@@ -250,14 +249,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's happening?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Sq-Mb-ha9">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
-                        <color key="backgroundColor" red="0.5450980392" green="0.61176470589999998" blue="0.75686274509999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="M3K-ZZ-uCQ" firstAttribute="top" secondItem="RG9-qW-EqQ" secondAttribute="bottom" constant="10" id="Fil-XK-gNv"/>
                             <constraint firstItem="RG9-qW-EqQ" firstAttribute="leading" secondItem="RMk-md-qDO" secondAttribute="leadingMargin" id="Heg-K5-FCX"/>
+                            <constraint firstItem="4Sq-Mb-ha9" firstAttribute="leading" secondItem="RG9-qW-EqQ" secondAttribute="leading" constant="4" id="YkK-3l-dNZ"/>
                             <constraint firstItem="M3K-ZZ-uCQ" firstAttribute="leading" secondItem="W26-FB-ZFN" secondAttribute="trailing" constant="20" id="bF6-xh-xPX"/>
                             <constraint firstItem="RG9-qW-EqQ" firstAttribute="top" secondItem="jSn-YH-eFe" secondAttribute="bottom" id="dvU-Zj-aLV"/>
                             <constraint firstItem="M3K-ZZ-uCQ" firstAttribute="centerY" secondItem="W26-FB-ZFN" secondAttribute="centerY" id="j7Z-Pl-ORX"/>
+                            <constraint firstItem="4Sq-Mb-ha9" firstAttribute="top" secondItem="RG9-qW-EqQ" secondAttribute="top" constant="8" id="rVa-4i-pbE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="RG9-qW-EqQ" secondAttribute="trailing" id="str-az-nDj"/>
                             <constraint firstAttribute="trailingMargin" secondItem="M3K-ZZ-uCQ" secondAttribute="trailing" constant="8" id="tPH-if-jRW"/>
                         </constraints>
@@ -271,6 +277,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="charsLeftLabel" destination="W26-FB-ZFN" id="jWG-uj-NpL"/>
+                        <outlet property="placeholderLabel" destination="4Sq-Mb-ha9" id="PH9-Nw-Pbx"/>
                         <outlet property="submitButton" destination="M3K-ZZ-uCQ" id="PwQ-Mx-bkb"/>
                         <outlet property="textView" destination="RG9-qW-EqQ" id="QQP-Me-f1O"/>
                     </connections>
