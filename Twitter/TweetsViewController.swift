@@ -25,6 +25,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return
         }
         
+        self.automaticallyAdjustsScrollViewInsets = false
+        
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 120
             
