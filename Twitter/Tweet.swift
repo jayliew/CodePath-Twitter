@@ -45,6 +45,8 @@ class Tweet: NSObject {
                 if let profileImageUrl = user["profile_image_url"] as? String{
                     if let realUrl = URL(string: profileImageUrl) {
                         self.profileImageUrl = realUrl
+                        print("--- PROFILE IMAGE URL ")
+                        print(realUrl)
                     }
                 }
                 if let screenName = user["screen_name"] as? String {
@@ -70,6 +72,8 @@ class Tweet: NSObject {
                 if let profileImageUrl = user["profile_image_url"] as? String{
                     if let realUrl = URL(string: profileImageUrl) {
                         self.profileImageUrl = realUrl
+                        print("--- PROFILE IMAGE URL ")
+                        print(realUrl)
                     }
                 }
                 if let screenName = user["screen_name"] as? String {
