@@ -31,19 +31,91 @@ class TweetCell: UITableViewCell {
             }
             tweetTextLabel.text = tweet.text
             nameLabel.text = tweet.realName
-            screenNameLabel.text = tweet.screenName
+            screenNameLabel.text = "@\(tweet.screenName!)"
             
             if let profileImageUrl = tweet.profileImageUrl {
                 self.profileImageView.setImageWith(profileImageUrl)
             }
             
             if let retweetedByName = tweet.retweetedByName{
-                topRetweetLabel.text = retweetedByName + " retweeted"
+                topRetweetLabel.text = retweetedByName + " Retweeted"
             }else{
                 topRetweetLabel.isHidden = true
                 topRetweetImageView.isHidden = true
             }
+            
+            favoritesCountLabel.text = "\(tweet.favouritesCount)"
+            retweetCountLabel.text = "\(tweet.retweetCount)"
+            
+            if let timestamp = tweet.timestamp {
+                timestampLabel.text = "• " + timeAgoSinceDate(date: timestamp, numericDates: true)
+            }
+            
         }
+    }
+    
+    func timeAgoSinceDate(date:Date, numericDates:Bool) -> String {
+        let calendar = NSCalendar.current
+        let unitFlags: Set<Calendar.Component> = [.minute, .hour, .day, .weekOfYear, .month, .year, .second]
+        let now = NSDate()
+        let earliest = now.earlierDate(date as Date)
+        let latest = (earliest == now as Date) ? date : now as Date
+        let components = calendar.dateComponents(unitFlags, from: earliest as Date,  to: latest as Date)
+        
+        if (components.year! >= 2) {
+            return "\(components.year!) years"
+        } else if (components.year! >= 1){
+            if (numericDates){
+                return "1 year"
+            } else {
+                return "Last year"
+            }
+        } else if (components.month! >= 2) {
+            return "\(components.month!) months"
+        } else if (components.month! >= 1){
+            if (numericDates){
+                return "1 month"
+            } else {
+                return "Last month"
+            }
+        } else if (components.weekOfYear! >= 2) {
+            return "\(components.weekOfYear!) weeks"
+        } else if (components.weekOfYear! >= 1){
+            if (numericDates){
+                return "1 week"
+            } else {
+                return "Last week"
+            }
+        } else if (components.day! >= 2) {
+            return "\(components.day!) days"
+        } else if (components.day! >= 1){
+            if (numericDates){
+                return "1 day"
+            } else {
+                return "Yesterday"
+            }
+        } else if (components.hour! >= 2) {
+            return "\(components.hour!)h"
+        } else if (components.hour! >= 1){
+            if (numericDates){
+                return "1h"
+            } else {
+                return "An hour"
+            }
+        } else if (components.minute! >= 2) {
+            return "\(components.minute!)m"
+        } else if (components.minute! >= 1){
+            if (numericDates){
+                return "1m"
+            } else {
+                return "A minute"
+            }
+        } else if (components.second! >= 3) {
+            return "\(components.second!)s"
+        } else {
+            return "Just now"
+        }
+        
     }
     
     override func awakeFromNib() {
