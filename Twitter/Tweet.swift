@@ -23,23 +23,26 @@ class Tweet: NSObject {
     var user: Dictionary<String, Any>?
     
     init(dictionary: Dictionary <String, Any>){
-        text = (dictionary["text"] as? String) ?? ""
-        retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
-        favouritesCount = (dictionary["favourites_count"] as? Int) ?? 0
-        
-        let timestampString = dictionary["created_at"] as? String
-        if let timestampString = timestampString{
-            let formatter = DateFormatter()
-            formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
-            
-            timestamp = formatter.date(from: timestampString)
-        } // timestampString
         
         if let rt_status = dictionary["retweeted_status"] as? Dictionary<String, Any>{
             print("--- RETWEETED STATUS ")
             
             if let user = rt_status["user"] as? Dictionary<String, Any> {
                 self.user = user
+                
+                text = (rt_status["text"] as? String) ?? ""
+                retweetCount = (rt_status["retweet_count"] as? Int) ?? 0
+                favouritesCount = (rt_status["favorite_count"] as? Int) ?? 0
+                
+                let timestampString = rt_status["created_at"] as? String
+                if let timestampString = timestampString{
+                    let formatter = DateFormatter()
+                    formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
+                    
+                    timestamp = formatter.date(from: timestampString)
+                } // timestampString
+
+                
                 print("--- USER OF TWEET ")
                 print(user["name"])
                 if let profileImageUrl = user["profile_image_url"] as? String{
@@ -63,8 +66,20 @@ class Tweet: NSObject {
                 }
             }
             
-        }else{
+        }else{ // if it's NOT a RETWEET
             
+            text = (dictionary["text"] as? String) ?? ""
+            retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
+            favouritesCount = (dictionary["favorite_count"] as? Int) ?? 0
+
+            let timestampString = dictionary["created_at"] as? String
+            if let timestampString = timestampString{
+                let formatter = DateFormatter()
+                formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
+                
+                timestamp = formatter.date(from: timestampString)
+            } // timestampString
+
             if let user = dictionary["user"] as? Dictionary<String, Any> {
                 self.user = user
                 print("--- USER OF TWEET ")
