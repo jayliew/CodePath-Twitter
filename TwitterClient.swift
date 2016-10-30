@@ -13,6 +13,7 @@ let twitterConsumerKey = "5hlxVelD8OH6rX9JSbCrA96bH"
 let twitterConsumerSecret = "HO7y19uiVojefq2BKpF3fBrZs1GRk1WpPZ0X2CHsU7blvedXTt"
 let twitterBaseURL = URL(string: "https://api.twitter.com")
 
+
 class TwitterClient: BDBOAuth1SessionManager {
     
     // Singleton
@@ -21,6 +22,36 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error?) -> ())?
+    
+    func postTweet(tweet: String, success: @escaping () -> ()?, failure: @escaping (Error?) -> ()?){
+        guard let client = TwitterClient.sharedInstance else {
+            return
+        }
+  
+        if(tweet.characters.count > 140){
+            failure(nil)
+            return
+        }
+        
+        var params = Dictionary<String, Any>()
+        params["status"] = tweet
+        
+        client.post("1.1/statuses/update.json",
+                    parameters: params,
+                    progress: { (progress: Progress) in
+                        print("--- progress in posting  tweet")
+                    },
+                    success: { (dataTask: URLSessionDataTask, response: Any?) in
+                        print("--- SUCCESS in posting tweet")
+                        success()
+                    },
+                    failure: { (dataTask: URLSessionDataTask?, error: Error) in
+                        print("--- FAIL in posting tweet")
+                        failure(error)
+                    }
+        ) // client.post
+        
+    }//postTweet
     
     func homeTimeline(success: @escaping ([Tweet]) -> (), failure: @escaping (Error?) -> ()){
         guard let client = TwitterClient.sharedInstance else {
