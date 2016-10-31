@@ -21,6 +21,7 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var retweetImageView: UIImageView!
     @IBOutlet weak var retweetedByLabel: UILabel!
     @IBOutlet weak var retweetActionImageView: UIImageView!
+    @IBOutlet weak var heartActionImageView: UIImageView!
     
     var tweet: Tweet!
     
@@ -57,10 +58,11 @@ class TweetDetailViewController: UIViewController {
             id: tweet.id!,
             success: { () -> ()? in
                 print("--- CALLBACK FIRED: SUCCESSFULLY POSTED FAVE: \(self.tweet.id!)")
+                self.heartActionImageView.image = UIImage(named: "hearted.png")
                 return Void()
             },
             failure: { (error: Error?) -> () in
-                print("--- FAILURE CALLBACK FIRED: RETWEET NOT FAVE: \(self.tweet.id!)")
+                print("--- FAILURE CALLBACK FIRED: TWEET NOT FAVE: \(self.tweet.id!)")
                 if let error = error {
                     print(error.localizedDescription)
                 }
@@ -91,17 +93,7 @@ class TweetDetailViewController: UIViewController {
             id: tweet.id!,
             success: { () -> ()? in
                 print("--- CALLBACK FIRED: SUCCESSFULLY POSTED RETWEET: \(self.tweet.id!)")
-                
-                //bottomRTImageView?.image = UIImage(named: "retweet-selected")
                 self.retweetActionImageView.image = UIImage(named: "retweeted.png")
-                
-                //let retweetedImageName = "retweeted.png"
-                //let retweetedImage = UIImage(named: "retweeted.png")
-                //let retweetedImageView = UIImageView(image: retweetedImage!)
-                
-                // self.retweetActionImageView = UIImageView(image: retweetedImage!)
-                //self.retweetActionImageView = retweetedImageView
-                
                 return Void()
             },
             failure: { (error: Error?) -> () in

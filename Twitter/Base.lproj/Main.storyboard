@@ -114,7 +114,8 @@
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Cnm-Ic-7cY" userLabel="Actions Stack">
                                                             <subviews>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2kb-th-mP5" userLabel="Reply Stack">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2kb-th-mP5" userLabel="Reply Stack">
+                                                                    <frame key="frameInset" width="46" height="22"/>
                                                                     <subviews>
                                                                         <imageView userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply.png" translatesAutoresizingMaskIntoConstraints="NO" id="gyJ-bJ-YtE">
                                                                             <constraints>
@@ -122,37 +123,44 @@
                                                                                 <constraint firstAttribute="height" constant="22" id="nwi-MM-ZDM"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCd-7w-So0" userLabel="Reply Padding">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="xxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JCd-7w-So0" userLabel="Reply Padding">
+                                                                            <frame key="frameInset" minX="27" width="19" height="22"/>
                                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                                             <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aeZ-bF-0FJ" userLabel="RT Stack">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="aeZ-bF-0FJ" userLabel="RT Stack">
+                                                                    <frame key="frameInset" minX="66" width="48" height="22"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet.png" translatesAutoresizingMaskIntoConstraints="NO" id="HwI-p3-RGt">
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="retweet.png" translatesAutoresizingMaskIntoConstraints="NO" id="HwI-p3-RGt">
+                                                                            <frame key="frameInset" width="22" height="22"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="22" id="eSh-u5-NPm"/>
                                                                                 <constraint firstAttribute="width" constant="22" id="fTE-ut-qTv"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="111" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5B-Hz-myX" userLabel="RTCount">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="111" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5B-Hz-myX" userLabel="RTCount">
+                                                                            <frame key="frameInset" minX="27" width="21" height="22"/>
                                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                                             <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="es6-dR-3vT" userLabel="Star Stack">
+                                                                <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="es6-dR-3vT" userLabel="Star Stack">
+                                                                    <frame key="frameInset" minX="134" width="48" height="22"/>
                                                                     <subviews>
-                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.png" translatesAutoresizingMaskIntoConstraints="NO" id="OXT-1Y-CUv">
+                                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="heart.png" translatesAutoresizingMaskIntoConstraints="NO" id="OXT-1Y-CUv">
+                                                                            <frame key="frameInset" width="22" height="22"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="22" id="sTH-fz-C4F"/>
                                                                                 <constraint firstAttribute="width" constant="22" id="vI1-np-eKJ"/>
                                                                             </constraints>
                                                                         </imageView>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AME-bh-mTg" userLabel="FavoritesCount">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AME-bh-mTg" userLabel="FavoritesCount">
+                                                                            <frame key="frameInset" minX="27" width="21" height="22"/>
                                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
                                                                             <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                                                             <nil key="highlightedColor"/>
@@ -300,7 +308,7 @@
                                             <outletCollection property="gestureRecognizers" destination="pcU-pI-GBt" appends="YES" id="asF-gY-SyC"/>
                                         </connections>
                                     </imageView>
-                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.png" translatesAutoresizingMaskIntoConstraints="NO" id="LUf-jD-4uj">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.png" translatesAutoresizingMaskIntoConstraints="NO" id="LUf-jD-4uj">
                                         <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="22" id="BLa-iJ-yjo"/>
@@ -397,6 +405,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="favoritesCount" destination="X5V-bQ-lXw" id="0hN-Cc-pGE"/>
+                        <outlet property="heartActionImageView" destination="LUf-jD-4uj" id="0Ne-Wr-Ieb"/>
                         <outlet property="profileImageView" destination="B1Y-Cs-3ZP" id="VmM-Ed-tNu"/>
                         <outlet property="realNameLabel" destination="VWR-d4-pnP" id="Nrx-r6-lTB"/>
                         <outlet property="retweetActionImageView" destination="SMW-hB-w3H" id="iyP-Qc-91A"/>
@@ -552,9 +561,9 @@
         </scene>
     </scenes>
     <resources>
+        <image name="heart.png" width="32" height="32"/>
         <image name="reply.png" width="32" height="32"/>
         <image name="retweet.png" width="32" height="32"/>
-        <image name="star.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="yp6-Sh-rAj"/>
