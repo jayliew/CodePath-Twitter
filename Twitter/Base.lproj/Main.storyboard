@@ -399,6 +399,7 @@
                         <outlet property="favoritesCount" destination="X5V-bQ-lXw" id="0hN-Cc-pGE"/>
                         <outlet property="profileImageView" destination="B1Y-Cs-3ZP" id="VmM-Ed-tNu"/>
                         <outlet property="realNameLabel" destination="VWR-d4-pnP" id="Nrx-r6-lTB"/>
+                        <outlet property="retweetActionImageView" destination="SMW-hB-w3H" id="iyP-Qc-91A"/>
                         <outlet property="retweetCountLabel" destination="emq-4o-E8r" id="UhS-Cz-Mlj"/>
                         <outlet property="retweetImageView" destination="qEL-uN-Uk0" id="M8z-pT-LxN"/>
                         <outlet property="retweetedByLabel" destination="boS-t9-0V2" id="tCq-Q0-dgb"/>

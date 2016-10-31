@@ -20,6 +20,7 @@ class TweetDetailViewController: UIViewController {
     @IBOutlet weak var retweetCountLabel: UILabel!
     @IBOutlet weak var retweetImageView: UIImageView!
     @IBOutlet weak var retweetedByLabel: UILabel!
+    @IBOutlet weak var retweetActionImageView: UIImageView!
     
     var tweet: Tweet!
     
@@ -56,7 +57,6 @@ class TweetDetailViewController: UIViewController {
             id: tweet.id!,
             success: { () -> ()? in
                 print("--- CALLBACK FIRED: SUCCESSFULLY POSTED FAVE: \(self.tweet.id!)")
-                self.dismiss(animated: true)
                 return Void()
             },
             failure: { (error: Error?) -> () in
@@ -91,7 +91,17 @@ class TweetDetailViewController: UIViewController {
             id: tweet.id!,
             success: { () -> ()? in
                 print("--- CALLBACK FIRED: SUCCESSFULLY POSTED RETWEET: \(self.tweet.id!)")
-                self.dismiss(animated: true)
+                
+                //bottomRTImageView?.image = UIImage(named: "retweet-selected")
+                self.retweetActionImageView.image = UIImage(named: "retweeted.png")
+                
+                //let retweetedImageName = "retweeted.png"
+                //let retweetedImage = UIImage(named: "retweeted.png")
+                //let retweetedImageView = UIImageView(image: retweetedImage!)
+                
+                // self.retweetActionImageView = UIImageView(image: retweetedImage!)
+                //self.retweetActionImageView = retweetedImageView
+                
                 return Void()
             },
             failure: { (error: Error?) -> () in

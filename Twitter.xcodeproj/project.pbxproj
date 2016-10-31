@@ -14,6 +14,7 @@
 		E1BDD8721DC44E49002FFFF1 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BDD8711DC44E49002FFFF1 /* star.png */; };
 		E1BDD8751DC44ECD002FFFF1 /* retweet.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BDD8741DC44ECD002FFFF1 /* retweet.png */; };
 		E1BDD8771DC44FDD002FFFF1 /* reply.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BDD8761DC44FDD002FFFF1 /* reply.png */; };
+		E1D94E931DC702E500E13BBB /* retweeted.png in Resources */ = {isa = PBXBuildFile; fileRef = E1D94E921DC702E500E13BBB /* retweeted.png */; };
 		E1EC61061DC2521600CD2C71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC61051DC2521600CD2C71 /* AppDelegate.swift */; };
 		E1EC61081DC2521600CD2C71 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC61071DC2521600CD2C71 /* LoginViewController.swift */; };
 		E1EC610B1DC2521600CD2C71 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1EC61091DC2521600CD2C71 /* Main.storyboard */; };
@@ -36,6 +37,7 @@
 		E1BDD8711DC44E49002FFFF1 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
 		E1BDD8741DC44ECD002FFFF1 /* retweet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retweet.png; sourceTree = "<group>"; };
 		E1BDD8761DC44FDD002FFFF1 /* reply.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reply.png; sourceTree = "<group>"; };
+		E1D94E921DC702E500E13BBB /* retweeted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = retweeted.png; sourceTree = "<group>"; };
 		E1EC61021DC2521600CD2C71 /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E1EC61051DC2521600CD2C71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E1EC61071DC2521600CD2C71 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -111,6 +113,7 @@
 			isa = PBXGroup;
 			children = (
 				E1BDD8741DC44ECD002FFFF1 /* retweet.png */,
+				E1D94E921DC702E500E13BBB /* retweeted.png */,
 				E1BDD8761DC44FDD002FFFF1 /* reply.png */,
 				E1BDD8711DC44E49002FFFF1 /* star.png */,
 			);
@@ -232,6 +235,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E1EC61101DC2521600CD2C71 /* LaunchScreen.storyboard in Resources */,
+				E1D94E931DC702E500E13BBB /* retweeted.png in Resources */,
 				E1BDD8751DC44ECD002FFFF1 /* retweet.png in Resources */,
 				E1BDD8721DC44E49002FFFF1 /* star.png in Resources */,
 				E1EC610D1DC2521600CD2C71 /* Assets.xcassets in Resources */,
