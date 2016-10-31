@@ -89,9 +89,13 @@ class TweetDetailViewController: UIViewController {
                     if(favorited){
                         self.heartActionImageView.image = UIImage(named: "heart.png")
                         self.tweet.favorited = false
+                        self.tweet.favouritesCount = self.tweet.favouritesCount - 1
+                        self.favoritesCount.text = "\(self.tweet.favouritesCount)"
                     }else{
                         self.heartActionImageView.image = UIImage(named: "hearted.png")
                         self.tweet.favorited = true
+                        self.tweet.favouritesCount = self.tweet.favouritesCount + 1
+                        self.favoritesCount.text = "\(self.tweet.favouritesCount)"
                     }
                 }
                 
@@ -142,9 +146,13 @@ class TweetDetailViewController: UIViewController {
                 if(doit == true){
                     self.retweetActionImageView.image = UIImage(named: "retweeted.png")
                     self.tweet.retweeted = true
+                    self.tweet.retweetCount = self.tweet.retweetCount + 1
+                    self.retweetCountLabel.text = "\(self.tweet.retweetCount)"
                 }else{
                     self.retweetActionImageView.image = UIImage(named: "retweet.png")
                     self.tweet.retweeted = false
+                    self.tweet.retweetCount = self.tweet.retweetCount - 1
+                    self.retweetCountLabel.text = "\(self.tweet.retweetCount)"
                 }
                 return Void()
             },

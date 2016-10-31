@@ -27,6 +27,8 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var heartActionImageView: UIImageView!
     @IBOutlet weak var retweetActionImageView: UIImageView!
     
+    
+    
     var tweet: Tweet! {
         didSet{
             guard tweet != nil else {
