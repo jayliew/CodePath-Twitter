@@ -15,12 +15,19 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
     @IBOutlet weak var submitButton: UIButton!
     @IBOutlet weak var placeholderLabel: UILabel!
     
+    var replyId: Int64?
+    var replyScreenName: String?
     var maxLength = 140
     
     override func viewDidLoad() {
         super.viewDidLoad()
         textView.delegate = self
         self.automaticallyAdjustsScrollViewInsets = false
+        
+        if let rsn = replyScreenName {
+            textView.text = "@\(rsn)"
+            placeholderLabel.isHidden = true
+        }
     }
     
     func textViewDidChange(_ textView: UITextView) {
@@ -53,6 +60,7 @@ class ComposeViewController: UIViewController, UITextViewDelegate {
         let client = TwitterClient.sharedInstance!
         client.postTweet(
             tweet: textView.text,
+            id: replyId,
             success: { () -> ()? in
                 print("--- CALLBACK FIRED: SUCCESSFULLY POSTED TWEET: \(self.textView.text)")
                 self.dismiss(animated: true)

@@ -421,6 +421,7 @@
                 <tapGestureRecognizer id="fke-CX-gWO" userLabel="replyTap">
                     <connections>
                         <action selector="onReply:" destination="Xgw-m0-15F" id="zRd-M8-Nci"/>
+                        <segue destination="baS-5R-XZh" kind="presentation" identifier="replySegue" id="yp6-Sh-rAj"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -554,4 +555,7 @@
         <image name="retweet.png" width="32" height="32"/>
         <image name="star.png" width="32" height="32"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="yp6-Sh-rAj"/>
+    </inferredMetricsTieBreakers>
 </document>

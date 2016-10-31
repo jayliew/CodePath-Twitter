@@ -70,8 +70,19 @@ class TweetDetailViewController: UIViewController {
     
     @IBAction func onReply(_ sender: AnyObject) {
         print("--- TAP REPLY \(tweet.id)")
+        performSegue(withIdentifier: "replySegue", sender: sender)
     }
-    
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "replySegue"){
+            print("--- PREPARE FOR SEGUE TO REPLY VIEW ")
+            let navController = segue.destination as! UINavigationController
+            let composeViewController = navController.topViewController as! ComposeViewController
+            composeViewController.replyId = tweet.id
+            composeViewController.replyScreenName = tweet.screenName
+        }
+    }
+
     @IBAction func onRetweet(_ sender: AnyObject) {
         print("--- TAP RETWEET \(tweet.id)")
         

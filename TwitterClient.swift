@@ -77,7 +77,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         ) // client.post
     } // retweet
     
-    func postTweet(tweet: String, success: @escaping () -> ()?, failure: @escaping (Error?) -> ()?){
+    func postTweet(tweet: String, id: Int64?, success: @escaping () -> ()?, failure: @escaping (Error?) -> ()?){
         guard let client = TwitterClient.sharedInstance else {
             return
         }
@@ -89,6 +89,10 @@ class TwitterClient: BDBOAuth1SessionManager {
         
         var params = Dictionary<String, Any>()
         params["status"] = tweet
+        
+        if let id = id {
+            params["in_reply_to_status_id"] = id
+        }
         
         client.post("1.1/statuses/update.json",
                     parameters: params,
