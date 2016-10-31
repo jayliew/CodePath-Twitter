@@ -15,6 +15,9 @@ let twitterConsumerSecret = "HO7y19uiVojefq2BKpF3fBrZs1GRk1WpPZ0X2CHsU7blvedXTt"
 let twitterConsumerKey2 = "P8iRLxzPKBnrWKGwvrjXpK2aw"
 let twitterConsumerSecret2 = "N3TPdHag1Fm9Qgh7dxsP7GeJb54l3csTYKLOXA5kv4YvqW5560"
 
+let twitterConsumerKey3 = "Vw2ghPycSd9XwOzAxJbi9dwOa"
+let twitterConsumerSecret3 = "reFinEL7pEcDPfWlTjHhbxNDEaelTrEjuqz1iTljN3G2BKO5AR"
+
 let twitterBaseURL = URL(string: "https://api.twitter.com")
 
 
@@ -22,7 +25,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     // Singleton
     
-    static let sharedInstance = TwitterClient(baseURL: twitterBaseURL, consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
+    static let sharedInstance = TwitterClient(baseURL: twitterBaseURL, consumerKey: twitterConsumerKey3, consumerSecret: twitterConsumerSecret3)
     
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error?) -> ())?
