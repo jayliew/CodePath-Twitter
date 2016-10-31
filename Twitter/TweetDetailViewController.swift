@@ -47,13 +47,26 @@ class TweetDetailViewController: UIViewController {
             retweetImageView.isHidden = true
         }
         
-        
-        
     } //viewDidLoad
     
     @IBAction func onFave(_ sender: AnyObject) {
         print("--- TAP FAVE \(tweet.id)")
-    }
+        let client = TwitterClient.sharedInstance!
+        client.favorite(
+            id: tweet.id!,
+            success: { () -> ()? in
+                print("--- CALLBACK FIRED: SUCCESSFULLY POSTED FAVE: \(self.tweet.id!)")
+                self.dismiss(animated: true)
+                return Void()
+            },
+            failure: { (error: Error?) -> () in
+                print("--- FAILURE CALLBACK FIRED: RETWEET NOT FAVE: \(self.tweet.id!)")
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        )
+    } // onFave
     
     @IBAction func onReply(_ sender: AnyObject) {
         print("--- TAP REPLY \(tweet.id)")
@@ -61,6 +74,22 @@ class TweetDetailViewController: UIViewController {
     
     @IBAction func onRetweet(_ sender: AnyObject) {
         print("--- TAP RETWEET \(tweet.id)")
+        
+        let client = TwitterClient.sharedInstance!
+        client.retweet(
+            id: tweet.id!,
+            success: { () -> ()? in
+                print("--- CALLBACK FIRED: SUCCESSFULLY POSTED RETWEET: \(self.tweet.id!)")
+                self.dismiss(animated: true)
+                return Void()
+            },
+            failure: { (error: Error?) -> () in
+                print("--- FAILURE CALLBACK FIRED: RETWEET NOT POSTED: \(self.tweet.id!)")
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+            }
+        )
     }
     
     @IBAction func onCancel(_ sender: AnyObject) {

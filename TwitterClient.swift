@@ -27,6 +27,56 @@ class TwitterClient: BDBOAuth1SessionManager {
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error?) -> ())?
     
+    func favorite(id: Int64, success: @escaping () -> ()?, failure: @escaping (Error?) -> ()?){
+        guard let client = TwitterClient.sharedInstance else {
+            return
+        }
+        let endpoint = "1.1/favorites/create.json"
+        
+        var params = Dictionary<String, Any>()
+        params["id"] = id
+        
+        client.post(endpoint,
+                    parameters: params,
+                    progress: { (progress: Progress) in
+                        print("--- progress in favoriting")
+            },
+                    success: { (dataTask: URLSessionDataTask, response: Any?) in
+                        print("--- SUCCESS in favoriting")
+                        success()
+            },
+                    failure: { (dataTask: URLSessionDataTask?, error: Error) in
+                        print("--- FAIL in favoriting")
+                        failure(error)
+            }
+        ) // client.post
+    } // retweet
+    
+    func retweet(id: Int64, success: @escaping () -> ()?, failure: @escaping (Error?) -> ()?){
+        guard let client = TwitterClient.sharedInstance else {
+            return
+        }
+        let endpoint = "1.1/statuses/retweet/\(id).json"
+        
+        var params = Dictionary<String, Any>()
+        params["id"] = id
+        
+        client.post(endpoint,
+                    parameters: params,
+                    progress: { (progress: Progress) in
+                        print("--- progress in retweeting")
+            },
+                    success: { (dataTask: URLSessionDataTask, response: Any?) in
+                        print("--- SUCCESS in posting REtweet")
+                        success()
+            },
+                    failure: { (dataTask: URLSessionDataTask?, error: Error) in
+                        print("--- FAIL in posting REtweet")
+                        failure(error)
+            }
+        ) // client.post
+    } // retweet
+    
     func postTweet(tweet: String, success: @escaping () -> ()?, failure: @escaping (Error?) -> ()?){
         guard let client = TwitterClient.sharedInstance else {
             return
@@ -151,7 +201,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         deauthorize()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil)
     }
-    
+
     func login(success:@escaping () -> (), failure:@escaping (Error?) -> ()){
         let client = TwitterClient.sharedInstance
         loginSuccess = success // callback
