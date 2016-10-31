@@ -49,20 +49,56 @@ class TweetDetailViewController: UIViewController {
             retweetImageView.isHidden = true
         }
         
+        if let retweeted = tweet.retweeted {
+            if(retweeted){
+                retweetActionImageView.image = UIImage(named: "retweeted.png")
+            }else{
+                retweetActionImageView.image = UIImage(named: "retweet.png")
+            }
+        }
+
+        if let favorited = tweet.favorited {
+            if(favorited){
+                heartActionImageView.image = UIImage(named: "hearted.png")
+            }else{
+                heartActionImageView.image = UIImage(named: "heart.png")
+            }
+        }
+
     } //viewDidLoad
     
     @IBAction func onFave(_ sender: AnyObject) {
         print("--- TAP FAVE \(tweet.id)")
         let client = TwitterClient.sharedInstance!
+        var create: Bool! // true for create, false for destroy
+        
+        if let favorited = tweet.favorited {
+            if(favorited){
+                create = false
+            }else{
+                create = true
+            }
+        }
+
         client.favorite(
             id: tweet.id!,
+            create: create,
             success: { () -> ()? in
-                print("--- CALLBACK FIRED: SUCCESSFULLY POSTED FAVE: \(self.tweet.id!)")
-                self.heartActionImageView.image = UIImage(named: "hearted.png")
+                print("--- CALLBACK FIRED: SUCCESSFULLY \(create) FAVE: \(self.tweet.id!)")
+                if let favorited = self.tweet.favorited { // change from previous state
+                    if(favorited){
+                        self.heartActionImageView.image = UIImage(named: "heart.png")
+                        self.tweet.favorited = false
+                    }else{
+                        self.heartActionImageView.image = UIImage(named: "hearted.png")
+                        self.tweet.favorited = true
+                    }
+                }
+                
                 return Void()
             },
             failure: { (error: Error?) -> () in
-                print("--- FAILURE CALLBACK FIRED: TWEET NOT FAVE: \(self.tweet.id!)")
+                print("--- FAILURE CALLBACK FIRED: TWEET \(create) FAVE: \(self.tweet.id!)")
                 if let error = error {
                     print(error.localizedDescription)
                 }
@@ -87,17 +123,33 @@ class TweetDetailViewController: UIViewController {
 
     @IBAction func onRetweet(_ sender: AnyObject) {
         print("--- TAP RETWEET \(tweet.id)")
+        var doit: Bool!
+        
+        if let retweeted = tweet.retweeted {
+            if(retweeted){
+                doit = false // UN-RT
+            }else{
+                doit = true // RT
+            }
+        }
         
         let client = TwitterClient.sharedInstance!
         client.retweet(
             id: tweet.id!,
+            doit: doit,
             success: { () -> ()? in
-                print("--- CALLBACK FIRED: SUCCESSFULLY POSTED RETWEET: \(self.tweet.id!)")
-                self.retweetActionImageView.image = UIImage(named: "retweeted.png")
+                print("--- CALLBACK FIRED: SUCCESSFULLY \(doit) RETWEET: \(self.tweet.id!)")
+                if(doit == true){
+                    self.retweetActionImageView.image = UIImage(named: "retweeted.png")
+                    self.tweet.retweeted = true
+                }else{
+                    self.retweetActionImageView.image = UIImage(named: "retweet.png")
+                    self.tweet.retweeted = false
+                }
                 return Void()
             },
             failure: { (error: Error?) -> () in
-                print("--- FAILURE CALLBACK FIRED: RETWEET NOT POSTED: \(self.tweet.id!)")
+                print("--- FAILURE CALLBACK FIRED: RETWEET \(doit): \(self.tweet.id!)")
                 if let error = error {
                     print(error.localizedDescription)
                 }

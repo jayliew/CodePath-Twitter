@@ -184,8 +184,10 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="favoritesCountLabel" destination="AME-bh-mTg" id="Xtz-r3-hZw"/>
+                                            <outlet property="heartActionImageView" destination="OXT-1Y-CUv" id="Ftr-wg-0X1"/>
                                             <outlet property="nameLabel" destination="LHj-0d-luf" id="1Gi-Kf-GeV"/>
                                             <outlet property="profileImageView" destination="7Rk-j6-sxP" id="8to-Ot-naO"/>
+                                            <outlet property="retweetActionImageView" destination="HwI-p3-RGt" id="uBJ-cA-tUR"/>
                                             <outlet property="retweetCountLabel" destination="l5B-Hz-myX" id="OHp-bR-gh6"/>
                                             <outlet property="screenNameLabel" destination="iyd-aH-2ju" id="m1k-YX-Vcn"/>
                                             <outlet property="timestampLabel" destination="fk4-Vh-BuA" id="ZcI-uM-bo5"/>
@@ -566,6 +568,6 @@
         <image name="retweet.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="yp6-Sh-rAj"/>
+        <segue reference="7OH-a0-41E"/>
     </inferredMetricsTieBreakers>
 </document>

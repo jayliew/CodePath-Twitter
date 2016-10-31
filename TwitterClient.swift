@@ -27,11 +27,17 @@ class TwitterClient: BDBOAuth1SessionManager {
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error?) -> ())?
     
-    func favorite(id: Int64, success: @escaping () -> ()?, failure: @escaping (Error?) -> ()?){
+    func favorite(id: Int64, create: Bool, success: @escaping () -> ()?, failure: @escaping (Error?) -> ()?){
         guard let client = TwitterClient.sharedInstance else {
             return
         }
-        let endpoint = "1.1/favorites/create.json"
+        
+        let endpoint: String!
+        if(create){ // fave or unfave
+            endpoint  = "1.1/favorites/create.json"
+        }else{
+            endpoint = "1.1/favorites/destroy.json"
+        }
         
         var params = Dictionary<String, Any>()
         params["id"] = id
@@ -39,24 +45,30 @@ class TwitterClient: BDBOAuth1SessionManager {
         client.post(endpoint,
                     parameters: params,
                     progress: { (progress: Progress) in
-                        print("--- progress in favoriting")
+                        print("--- progress in FAVE")
             },
                     success: { (dataTask: URLSessionDataTask, response: Any?) in
-                        print("--- SUCCESS in favoriting")
+                        print("--- SUCCESS in FAVE to \(create)")
                         success()
             },
                     failure: { (dataTask: URLSessionDataTask?, error: Error) in
-                        print("--- FAIL in favoriting")
+                        print("--- FAIL in FAVE to \(create)")
                         failure(error)
             }
         ) // client.post
-    } // retweet
+    } // favorite
     
-    func retweet(id: Int64, success: @escaping () -> ()?, failure: @escaping (Error?) -> ()?){
+    func retweet(id: Int64, doit: Bool, success: @escaping () -> ()?, failure: @escaping (Error?) -> ()?){
         guard let client = TwitterClient.sharedInstance else {
             return
         }
-        let endpoint = "1.1/statuses/retweet/\(id).json"
+        
+        let endpoint: String!
+        if(doit){ // RT or UN-RT
+            endpoint = "1.1/statuses/retweet/\(id).json"
+        }else{
+            endpoint = "1.1/statuses/unretweet/\(id).json"
+        }
         
         var params = Dictionary<String, Any>()
         params["id"] = id
@@ -64,14 +76,14 @@ class TwitterClient: BDBOAuth1SessionManager {
         client.post(endpoint,
                     parameters: params,
                     progress: { (progress: Progress) in
-                        print("--- progress in retweeting")
+                        print("--- progress in retweeting to \(doit)")
             },
                     success: { (dataTask: URLSessionDataTask, response: Any?) in
-                        print("--- SUCCESS in posting REtweet")
+                        print("--- SUCCESS in REtweet to \(doit)")
                         success()
             },
                     failure: { (dataTask: URLSessionDataTask?, error: Error) in
-                        print("--- FAIL in posting REtweet")
+                        print("--- FAIL in REtweet to \(doit)")
                         failure(error)
             }
         ) // client.post

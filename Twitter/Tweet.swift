@@ -21,6 +21,9 @@ class Tweet: NSObject {
     var profileImageUrl: URL?
     var retweetedByName: String?
     
+    var retweeted: Bool?
+    var favorited: Bool?
+    
     var user: Dictionary<String, Any>?
     
     init(dictionary: Dictionary <String, Any>){
@@ -33,6 +36,14 @@ class Tweet: NSObject {
         }
 
         if let rt_status = dictionary["retweeted_status"] as? Dictionary<String, Any>{
+            
+            if let retweeted = rt_status["retweeted"] as? Bool{
+                self.retweeted = retweeted
+            }
+            
+            if let favorited = rt_status["favorited"] as? Bool{
+                self.favorited = favorited
+            }
             
             if let user = rt_status["user"] as? Dictionary<String, Any> {
                 self.user = user
@@ -70,6 +81,14 @@ class Tweet: NSObject {
             
         }else{ // if it's NOT a RETWEET
             
+            if let retweeted = dictionary["retweeted"] as? Bool{
+                self.retweeted = retweeted
+            }
+            
+            if let favorited = dictionary["favorited"] as? Bool{
+                self.favorited = favorited
+            }
+
             text = (dictionary["text"] as? String) ?? ""
             retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
             favouritesCount = (dictionary["favorite_count"] as? Int) ?? 0

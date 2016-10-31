@@ -24,6 +24,9 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var retweetCountLabel: UILabel!
     @IBOutlet weak var favoritesCountLabel: UILabel!
     
+    @IBOutlet weak var heartActionImageView: UIImageView!
+    @IBOutlet weak var retweetActionImageView: UIImageView!
+    
     var tweet: Tweet! {
         didSet{
             guard tweet != nil else {
@@ -51,6 +54,21 @@ class TweetCell: UITableViewCell {
                 timestampLabel.text = "• " + timeAgoSinceDate(date: timestamp, numericDates: true)
             }
             
+            if let retweeted = tweet.retweeted {
+                if(retweeted){
+                    retweetActionImageView.image = UIImage(named: "retweeted.png")
+                }else{
+                    retweetActionImageView.image = UIImage(named: "retweet.png")
+                }
+            }
+            
+            if let favorited = tweet.favorited {
+                if(favorited){
+                    heartActionImageView.image = UIImage(named: "hearted.png")
+                }else{
+                    heartActionImageView.image = UIImage(named: "heart.png")
+                }
+            }            
         }
     }
     
