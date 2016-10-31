@@ -22,7 +22,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     // Singleton
     
-    static let sharedInstance = TwitterClient(baseURL: twitterBaseURL, consumerKey: twitterConsumerKey2, consumerSecret: twitterConsumerSecret2)
+    static let sharedInstance = TwitterClient(baseURL: twitterBaseURL, consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
     
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error?) -> ())?
@@ -102,8 +102,9 @@ class TwitterClient: BDBOAuth1SessionManager {
         var params = Dictionary<String, Any>()
         params["status"] = tweet
         
-        if let id = id {
+        if id != nil {
             params["in_reply_to_status_id"] = id
+            print("--- REPLY TWEET ID IS \(id)")
         }
         
         client.post("1.1/statuses/update.json",
