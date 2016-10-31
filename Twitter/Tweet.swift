@@ -25,7 +25,6 @@ class Tweet: NSObject {
     init(dictionary: Dictionary <String, Any>){
         
         if let rt_status = dictionary["retweeted_status"] as? Dictionary<String, Any>{
-            print("--- RETWEETED STATUS ")
             
             if let user = rt_status["user"] as? Dictionary<String, Any> {
                 self.user = user
@@ -42,14 +41,9 @@ class Tweet: NSObject {
                     timestamp = formatter.date(from: timestampString)
                 } // timestampString
 
-                
-                print("--- USER OF TWEET ")
-                print(user["name"])
                 if let profileImageUrl = user["profile_image_url"] as? String{
                     if let realUrl = URL(string: profileImageUrl) {
                         self.profileImageUrl = realUrl
-                        print("--- PROFILE IMAGE URL ")
-                        print(realUrl)
                     }
                 }
                 if let screenName = user["screen_name"] as? String {
@@ -82,13 +76,9 @@ class Tweet: NSObject {
 
             if let user = dictionary["user"] as? Dictionary<String, Any> {
                 self.user = user
-                print("--- USER OF TWEET ")
-                print(user["name"])
                 if let profileImageUrl = user["profile_image_url"] as? String{
                     if let realUrl = URL(string: profileImageUrl) {
                         self.profileImageUrl = realUrl
-                        print("--- PROFILE IMAGE URL ")
-                        print(realUrl)
                     }
                 }
                 if let screenName = user["screen_name"] as? String {

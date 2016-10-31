@@ -21,6 +21,7 @@
 		E1EC61101DC2521600CD2C71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E1EC610E1DC2521600CD2C71 /* LaunchScreen.storyboard */; };
 		E1EC611B1DC25AB300CD2C71 /* TwitterClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1EC611A1DC25AB300CD2C71 /* TwitterClient.swift */; };
 		E1ED63F41DC6589700A8F3DE /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ED63F31DC6589700A8F3DE /* ComposeViewController.swift */; };
+		E1ED63F61DC6AE6F00A8F3DE /* TweetDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1ED63F51DC6AE6F00A8F3DE /* TweetDetailViewController.swift */; };
 		E1FCA0001DC3D0380072747C /* TweetsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1FC9FFF1DC3D0380072747C /* TweetsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		E1EC61171DC25A2500CD2C71 /* Twitter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Twitter-Bridging-Header.h"; sourceTree = "<group>"; };
 		E1EC611A1DC25AB300CD2C71 /* TwitterClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterClient.swift; sourceTree = SOURCE_ROOT; };
 		E1ED63F31DC6589700A8F3DE /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
+		E1ED63F51DC6AE6F00A8F3DE /* TweetDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetDetailViewController.swift; sourceTree = "<group>"; };
 		E1FC9FFF1DC3D0380072747C /* TweetsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				E1EC61071DC2521600CD2C71 /* LoginViewController.swift */,
+				E1ED63F51DC6AE6F00A8F3DE /* TweetDetailViewController.swift */,
 				E1FC9FFF1DC3D0380072747C /* TweetsViewController.swift */,
 				E1ED63F31DC6589700A8F3DE /* ComposeViewController.swift */,
 			);
@@ -294,6 +297,7 @@
 			files = (
 				E13E9CEE1DC2FB9100EB03DA /* User.swift in Sources */,
 				E1BDD8701DC444F0002FFFF1 /* TweetCell.swift in Sources */,
+				E1ED63F61DC6AE6F00A8F3DE /* TweetDetailViewController.swift in Sources */,
 				E13E9CEF1DC2FB9100EB03DA /* Tweet.swift in Sources */,
 				E1ED63F41DC6589700A8F3DE /* ComposeViewController.swift in Sources */,
 				E1FCA0001DC3D0380072747C /* TweetsViewController.swift in Sources */,

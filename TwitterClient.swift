@@ -28,7 +28,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             return
         }
   
-        if(tweet.characters.count > 140){
+        if(tweet.characters.count > 140 || tweet.characters.count == 0){
             failure(nil)
             return
         }
@@ -120,7 +120,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                                     client.currentAccount(
                                         success: { (user: User) in
                                             print("--- SUCCESS currentAccount()")
-                                            print(user)
+                                            // print(user)
                                             User.currentUser = user
                                             self.loginSuccess?()
                                         },

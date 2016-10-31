@@ -44,10 +44,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         client.homeTimeline(
             success: { (tweets: [Tweet]) -> () in
                 self.tweets = tweets
-                
-                for tweet in self.tweets!{
-                    print(tweet.text)
-                }
                 self.tableView.reloadData()
             },
             failure: { (error: Error?) -> () in
@@ -66,10 +62,6 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.client.homeTimeline(
             success: { (tweets: [Tweet]) -> () in
                 self.tweets = tweets
-                
-                for tweet in self.tweets!{
-                    print(tweet.text)
-                }
                 self.tableView.reloadData()
             },
             failure: { (error: Error?) -> () in
@@ -78,6 +70,17 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ) // homeTimeline
         
         refreshControl.endRefreshing()
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if (segue.identifier == "detailsSegue"){
+            print("--- PREPARE FOR SEGUE TO DETAILS VIEW ")
+            let navController = segue.destination as! UINavigationController
+            let detailsViewController = navController.topViewController as! TweetDetailViewController
+            let cell = sender as! TweetCell
+            let indexPath = tableView.indexPath(for: cell)!
+            detailsViewController.tweet = tweets![indexPath.row]
+        }
     }
     
     // MARK: UITableView Delegates
