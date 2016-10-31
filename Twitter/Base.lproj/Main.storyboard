@@ -280,23 +280,35 @@
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="9ij-Zb-Uv1">
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply.png" translatesAutoresizingMaskIntoConstraints="NO" id="Z4P-4O-rMt">
+                                    <imageView alpha="0.40000000596046448" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply.png" translatesAutoresizingMaskIntoConstraints="NO" id="Z4P-4O-rMt">
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="hkE-mg-Qgi"/>
                                             <constraint firstAttribute="width" constant="22" id="zrO-rx-VsE"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="fke-CX-gWO" appends="YES" id="aYT-1c-Pm8"/>
+                                        </connections>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet.png" translatesAutoresizingMaskIntoConstraints="NO" id="SMW-hB-w3H">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet.png" translatesAutoresizingMaskIntoConstraints="NO" id="SMW-hB-w3H">
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="22" id="EkY-by-vlW"/>
                                             <constraint firstAttribute="width" constant="22" id="hrQ-gM-ovh"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="pcU-pI-GBt" appends="YES" id="asF-gY-SyC"/>
+                                        </connections>
                                     </imageView>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.png" translatesAutoresizingMaskIntoConstraints="NO" id="LUf-jD-4uj">
+                                    <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="star.png" translatesAutoresizingMaskIntoConstraints="NO" id="LUf-jD-4uj">
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="22" id="BLa-iJ-yjo"/>
                                             <constraint firstAttribute="height" constant="22" id="eYF-1B-2LG"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="YV0-ky-g0n" appends="YES" id="IzO-2e-Gl5"/>
+                                        </connections>
                                     </imageView>
                                 </subviews>
                             </stackView>
@@ -351,6 +363,7 @@
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="8Nn-YE-OnY" secondAttribute="trailing" id="5UB-Mn-JKH"/>
                             <constraint firstItem="aWM-El-VHX" firstAttribute="leading" secondItem="w1B-kM-HQh" secondAttribute="leadingMargin" id="9Bc-HO-kwG"/>
@@ -395,6 +408,21 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hH5-E2-1Sf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="YV0-ky-g0n" userLabel="faveTap">
+                    <connections>
+                        <action selector="onFave:" destination="Xgw-m0-15F" id="yuo-xb-eaj"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="pcU-pI-GBt" userLabel="retweetTap">
+                    <connections>
+                        <action selector="onRetweet:" destination="Xgw-m0-15F" id="sbx-up-eJS"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="fke-CX-gWO" userLabel="replyTap">
+                    <connections>
+                        <action selector="onReply:" destination="Xgw-m0-15F" id="zRd-M8-Nci"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2213.5999999999999" y="778.56071964017997"/>
         </scene>

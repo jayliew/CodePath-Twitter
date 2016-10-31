@@ -1,6 +1,6 @@
 //
 //  Tweet.swift
-//  
+//
 //
 //  Created by Jay Liew on 10/27/16.
 //
@@ -9,11 +9,12 @@
 import UIKit
 
 class Tweet: NSObject {
-
+    
     var text: String?
     var timestamp: Date?
     var retweetCount: Int = 0
     var favouritesCount: Int = 0
+    var id: Int64?
     
     var screenName: String!
     var realName: String?
@@ -24,6 +25,13 @@ class Tweet: NSObject {
     
     init(dictionary: Dictionary <String, Any>){
         
+        if let id_key = dictionary["id"]{
+            if let id_int = id_key as? NSNumber {
+                self.id = id_int.int64Value
+                print("--- TWEET ID IS: \(self.id)")
+            }
+        }
+
         if let rt_status = dictionary["retweeted_status"] as? Dictionary<String, Any>{
             
             if let user = rt_status["user"] as? Dictionary<String, Any> {
@@ -40,7 +48,7 @@ class Tweet: NSObject {
                     
                     timestamp = formatter.date(from: timestampString)
                 } // timestampString
-
+                
                 if let profileImageUrl = user["profile_image_url"] as? String{
                     if let realUrl = URL(string: profileImageUrl) {
                         self.profileImageUrl = realUrl
@@ -65,7 +73,7 @@ class Tweet: NSObject {
             text = (dictionary["text"] as? String) ?? ""
             retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
             favouritesCount = (dictionary["favorite_count"] as? Int) ?? 0
-
+            
             let timestampString = dictionary["created_at"] as? String
             if let timestampString = timestampString{
                 let formatter = DateFormatter()
@@ -73,7 +81,7 @@ class Tweet: NSObject {
                 
                 timestamp = formatter.date(from: timestampString)
             } // timestampString
-
+            
             if let user = dictionary["user"] as? Dictionary<String, Any> {
                 self.user = user
                 if let profileImageUrl = user["profile_image_url"] as? String{

@@ -39,7 +39,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         self.automaticallyAdjustsScrollViewInsets = false
         
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 120
+        tableView.estimatedRowHeight = 220
         
         client.homeTimeline(
             success: { (tweets: [Tweet]) -> () in

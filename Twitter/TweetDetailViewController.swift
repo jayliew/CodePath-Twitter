@@ -46,6 +46,21 @@ class TweetDetailViewController: UIViewController {
             retweetedByLabel.isHidden = true
             retweetImageView.isHidden = true
         }
+        
+        
+        
+    } //viewDidLoad
+    
+    @IBAction func onFave(_ sender: AnyObject) {
+        print("--- TAP FAVE \(tweet.id)")
+    }
+    
+    @IBAction func onReply(_ sender: AnyObject) {
+        print("--- TAP REPLY \(tweet.id)")
+    }
+    
+    @IBAction func onRetweet(_ sender: AnyObject) {
+        print("--- TAP RETWEET \(tweet.id)")
     }
     
     @IBAction func onCancel(_ sender: AnyObject) {
