@@ -15,6 +15,10 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     var viewControllers: [UIViewController] = []
     
     private var homeTimelineNavigationController: UIViewController!
+    private var profileNavigationController: UIViewController!
+    
+    var hamburgerViewController: HamburgerViewController!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +29,18 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         homeTimelineNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
         
+        profileNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileNavigationViewController")
+        
         viewControllers.append(homeTimelineNavigationController)
+        
+        viewControllers.append(profileNavigationController)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        hamburgerViewController.contentViewController = viewControllers[indexPath.row]
+        
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
