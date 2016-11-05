@@ -24,15 +24,23 @@ class HamburgerViewController: UIViewController {
     }
 
     var contentViewController: UIViewController! {
-        didSet {
+        didSet (oldContentViewController){
             view.layoutIfNeeded()
+            
+            if oldContentViewController != nil {
+                oldContentViewController.willMove(toParentViewController: nil)
+                oldContentViewController.view.removeFromSuperview()
+                oldContentViewController.didMove(toParentViewController: nil)
+            }
+            
+            contentViewController.willMove(toParentViewController: self)
             contentView.addSubview(contentViewController.view)
+            contentViewController.didMove(toParentViewController: self)
             
             UIView.animate(withDuration: 0.3, animations: {
                     self.contentViewLeading.constant = 0
                     self.view.layoutIfNeeded()
             })
-            
         }
     }
 

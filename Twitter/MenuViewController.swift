@@ -28,12 +28,12 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
         homeTimelineNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
-        
-        profileNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileNavigationViewController")
-        
         viewControllers.append(homeTimelineNavigationController)
         
+        profileNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileNavigationViewController")
         viewControllers.append(profileNavigationController)
+        
+        hamburgerViewController.contentViewController = homeTimelineNavigationController
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
