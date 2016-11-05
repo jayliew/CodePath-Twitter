@@ -14,7 +14,12 @@ class User: NSObject {
     var name: String?
     var screen_name: String?
     var profileUrl: URL?
+    var backgroundUrl: URL?
     var tagline: String?
+    var following: Int?
+    var followersCount: Int?
+    var statusesCount: Int?
+    
     var dictionary : Dictionary<String, Any>? // raw data for User
     
     static var _currentUser: User?
@@ -66,6 +71,24 @@ class User: NSObject {
         if let profileUrlString = profileUrlString{
             profileUrl = URL(string: profileUrlString)
         }
+
+        let backgroundUrlString = initDictionary["profile_background_image_url_https"] as? String
+        if let backgroundUrlString = backgroundUrlString{
+            profileUrl = URL(string: backgroundUrlString)
+        }
+        
+        if let fCount = initDictionary["followers_count"] as? Int {
+           followersCount = fCount
+        }
+
+        if let fIng = initDictionary["following"] as? Int {
+            followersCount = fIng
+        }
+
+        if let sC = initDictionary["statuses_count"] as? Int {
+            statusesCount = sC
+        }
+        
     } // init
     
 } // User

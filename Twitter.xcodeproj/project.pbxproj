@@ -12,6 +12,8 @@
 		E13E9CEF1DC2FB9100EB03DA /* Tweet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13E9CED1DC2FB9100EB03DA /* Tweet.swift */; };
 		E19D1E2E1DCD102B00DB4914 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19D1E2D1DCD102B00DB4914 /* MenuViewController.swift */; };
 		E19D1E301DCD1E9600DB4914 /* HamburgerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19D1E2F1DCD1E9600DB4914 /* HamburgerViewController.swift */; };
+		E19D1E341DCE7A7000DB4914 /* MenuCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19D1E331DCE7A7000DB4914 /* MenuCell.swift */; };
+		E19D1E361DCE7F3E00DB4914 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E19D1E351DCE7F3E00DB4914 /* ProfileViewController.swift */; };
 		E1BDD8701DC444F0002FFFF1 /* TweetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1BDD86F1DC444F0002FFFF1 /* TweetCell.swift */; };
 		E1BDD8721DC44E49002FFFF1 /* star.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BDD8711DC44E49002FFFF1 /* star.png */; };
 		E1BDD8751DC44ECD002FFFF1 /* retweet.png in Resources */ = {isa = PBXBuildFile; fileRef = E1BDD8741DC44ECD002FFFF1 /* retweet.png */; };
@@ -38,6 +40,8 @@
 		E13E9CED1DC2FB9100EB03DA /* Tweet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tweet.swift; sourceTree = "<group>"; };
 		E19D1E2D1DCD102B00DB4914 /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		E19D1E2F1DCD1E9600DB4914 /* HamburgerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerViewController.swift; sourceTree = "<group>"; };
+		E19D1E331DCE7A7000DB4914 /* MenuCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuCell.swift; sourceTree = "<group>"; };
+		E19D1E351DCE7F3E00DB4914 /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		E1BDD86D1DC42E75002FFFF1 /* Twitter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Twitter.entitlements; sourceTree = "<group>"; };
 		E1BDD86F1DC444F0002FFFF1 /* TweetCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCell.swift; sourceTree = "<group>"; };
 		E1BDD8711DC44E49002FFFF1 /* star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star.png; sourceTree = "<group>"; };
@@ -98,6 +102,7 @@
 				E19D1E2F1DCD1E9600DB4914 /* HamburgerViewController.swift */,
 				E1FC9FFF1DC3D0380072747C /* TweetsViewController.swift */,
 				E1ED63F31DC6589700A8F3DE /* ComposeViewController.swift */,
+				E19D1E351DCE7F3E00DB4914 /* ProfileViewController.swift */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				E1BDD86F1DC444F0002FFFF1 /* TweetCell.swift */,
+				E19D1E331DCE7A7000DB4914 /* MenuCell.swift */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -315,6 +321,7 @@
 			files = (
 				E13E9CEE1DC2FB9100EB03DA /* User.swift in Sources */,
 				E19D1E2E1DCD102B00DB4914 /* MenuViewController.swift in Sources */,
+				E19D1E341DCE7A7000DB4914 /* MenuCell.swift in Sources */,
 				E1BDD8701DC444F0002FFFF1 /* TweetCell.swift in Sources */,
 				E1ED63F61DC6AE6F00A8F3DE /* TweetDetailViewController.swift in Sources */,
 				E13E9CEF1DC2FB9100EB03DA /* Tweet.swift in Sources */,
@@ -322,6 +329,7 @@
 				E1FCA0001DC3D0380072747C /* TweetsViewController.swift in Sources */,
 				E1EC61081DC2521600CD2C71 /* LoginViewController.swift in Sources */,
 				E1EC611B1DC25AB300CD2C71 /* TwitterClient.swift in Sources */,
+				E19D1E361DCE7F3E00DB4914 /* ProfileViewController.swift in Sources */,
 				E19D1E301DCD1E9600DB4914 /* HamburgerViewController.swift in Sources */,
 				E1EC61061DC2521600CD2C71 /* AppDelegate.swift in Sources */,
 			);

@@ -19,6 +19,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     var hamburgerViewController: HamburgerViewController!
     
+    var menuLabels = ["Home", "Profile"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,7 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         profileNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileNavigationViewController")
         viewControllers.append(profileNavigationController)
         
-        hamburgerViewController.contentViewController = homeTimelineNavigationController
+        hamburgerViewController.contentViewController = homeTimelineNavigationController // set as default content on first load up
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -44,7 +45,9 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MenuCell", for: indexPath) as! MenuCell
+        
+        cell.menuLabel.text = menuLabels[indexPath.row]
         
         return cell
     }

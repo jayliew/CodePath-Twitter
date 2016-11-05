@@ -6,7 +6,9 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -112,13 +114,28 @@
                                 <rect key="frame" x="0.0" y="21" width="375" height="647"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" id="kFz-v3-gfa">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MenuCell" id="kFz-v3-gfa" customClass="MenuCell" customModule="Twitter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kFz-v3-gfa" id="D4I-1Z-IB4">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Home Timeline " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5rJ-xk-oNr" userLabel="menuOption">
+                                                    <rect key="frame" x="16" y="11" width="119" height="20"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="5rJ-xk-oNr" firstAttribute="leading" secondItem="D4I-1Z-IB4" secondAttribute="leadingMargin" constant="8" id="9hR-aw-TLC"/>
+                                                <constraint firstItem="5rJ-xk-oNr" firstAttribute="centerY" secondItem="D4I-1Z-IB4" secondAttribute="centerY" id="Uww-F1-5Wd"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="menuLabel" destination="5rJ-xk-oNr" id="ooV-KQ-jNo"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -137,12 +154,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wwH-sX-reG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1217" y="-626"/>
+            <point key="canvasLocation" x="1192.8" y="-667.01649175412297"/>
         </scene>
         <!--Profile-->
         <scene sceneID="SGE-tn-oUG">
             <objects>
-                <viewController id="Hb9-Il-KFG" sceneMemberID="viewController">
+                <viewController id="Hb9-Il-KFG" customClass="ProfileViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="z9z-DI-AIu"/>
                         <viewControllerLayoutGuide type="bottom" id="jII-ya-AHY"/>
@@ -150,13 +167,54 @@
                     <view key="view" contentMode="scaleToFill" id="Pp4-bw-tVE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Sik-lX-jIv" userLabel="backgroundImage">
+                                <rect key="frame" x="0.0" y="64" width="375" height="133.5"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="oX1-ob-wkk" userLabel="profileImage">
+                                <rect key="frame" x="26" y="207.5" width="75" height="75"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="oX1-ob-wkk" secondAttribute="height" multiplier="1:1" id="aPk-cK-s27"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Jay Liew" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FB1-d5-2V2">
+                                <rect key="frame" x="26" y="292.5" width="84" height="24"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@jaysern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Voa-Qf-9ij">
+                                <rect key="frame" x="26" y="320" width="53" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                                <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Sik-lX-jIv" firstAttribute="top" secondItem="z9z-DI-AIu" secondAttribute="bottom" id="26s-nq-IXy"/>
+                            <constraint firstItem="FB1-d5-2V2" firstAttribute="top" secondItem="oX1-ob-wkk" secondAttribute="bottom" constant="10" id="6Wq-Zz-6pa"/>
+                            <constraint firstAttribute="trailing" secondItem="Sik-lX-jIv" secondAttribute="trailing" id="BYR-a5-N1l"/>
+                            <constraint firstItem="FB1-d5-2V2" firstAttribute="leading" secondItem="Pp4-bw-tVE" secondAttribute="leadingMargin" constant="10" id="Pwj-Eu-NUy"/>
+                            <constraint firstItem="Sik-lX-jIv" firstAttribute="height" secondItem="Pp4-bw-tVE" secondAttribute="height" multiplier="0.2" id="TUz-Ki-M0p"/>
+                            <constraint firstItem="oX1-ob-wkk" firstAttribute="leading" secondItem="Pp4-bw-tVE" secondAttribute="leadingMargin" constant="10" id="WTW-jz-YXE"/>
+                            <constraint firstItem="Sik-lX-jIv" firstAttribute="leading" secondItem="Pp4-bw-tVE" secondAttribute="leading" id="Z55-N6-ch4"/>
+                            <constraint firstItem="oX1-ob-wkk" firstAttribute="width" secondItem="Pp4-bw-tVE" secondAttribute="width" multiplier="0.2" id="Z8p-yE-8Xb"/>
+                            <constraint firstItem="oX1-ob-wkk" firstAttribute="top" secondItem="Sik-lX-jIv" secondAttribute="bottom" constant="10" id="pGl-kK-hfR"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Profile" id="7bs-rl-QTQ"/>
+                    <connections>
+                        <outlet property="backgroundImageView" destination="Sik-lX-jIv" id="AFc-Yx-xH5"/>
+                        <outlet property="nameLabel" destination="FB1-d5-2V2" id="7af-uo-9hz"/>
+                        <outlet property="profileImageView" destination="oX1-ob-wkk" id="aAA-JD-rFL"/>
+                        <outlet property="screenNameLabel" destination="Voa-Qf-9ij" id="gxL-L0-e1f"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PJo-D6-l5u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3103" y="-707"/>
+            <point key="canvasLocation" x="3101.5999999999999" y="-707.49625187406298"/>
         </scene>
         <!--Home-->
         <scene sceneID="Cja-my-Fkw">
@@ -744,6 +802,6 @@
         <image name="retweet.png" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="7OH-a0-41E"/>
+        <segue reference="yp6-Sh-rAj"/>
     </inferredMetricsTieBreakers>
 </document>
