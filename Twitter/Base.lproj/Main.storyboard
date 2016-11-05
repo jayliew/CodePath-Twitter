@@ -15,7 +15,7 @@
         <!--Login View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="LoginViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="BYZ-38-t0r" customClass="LoginViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -40,6 +40,7 @@
                     </view>
                     <connections>
                         <segue destination="f7M-nJ-rcP" kind="presentation" identifier="loginSegue" id="OA1-d2-35v"/>
+                        <segue destination="a1X-qF-s3q" kind="show" identifier="HamburgerSegue" id="hhW-A0-UyQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -184,10 +185,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="@jaysern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Voa-Qf-9ij">
-                                <rect key="frame" x="26" y="320" width="53" height="16"/>
+                                <rect key="frame" x="26" y="320" width="144" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
                                 <color key="textColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Back Blast Area ALL CLEAR!!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EEJ-Ir-hTW">
+                                <rect key="frame" x="26" y="344" width="333" height="131"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -207,6 +215,7 @@
                     <navigationItem key="navigationItem" title="Profile" id="7bs-rl-QTQ"/>
                     <connections>
                         <outlet property="backgroundImageView" destination="Sik-lX-jIv" id="AFc-Yx-xH5"/>
+                        <outlet property="descriptionLabel" destination="EEJ-Ir-hTW" id="3dP-QU-VxZ"/>
                         <outlet property="nameLabel" destination="FB1-d5-2V2" id="7af-uo-9hz"/>
                         <outlet property="profileImageView" destination="oX1-ob-wkk" id="aAA-JD-rFL"/>
                         <outlet property="screenNameLabel" destination="Voa-Qf-9ij" id="gxL-L0-e1f"/>
@@ -664,7 +673,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="RG9-qW-EqQ" userLabel="Tweet TextView">
-                                <rect key="frame" x="16" y="64" width="343" height="100"/>
+                                <rect key="frame" x="16" y="20" width="343" height="100"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="HDc-Ca-snN"/>
@@ -673,20 +682,20 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M3K-ZZ-uCQ" userLabel="Submit">
-                                <rect key="frame" x="309" y="174" width="42" height="30"/>
+                                <rect key="frame" x="309" y="130" width="42" height="30"/>
                                 <state key="normal" title="Tweet"/>
                                 <connections>
                                     <action selector="onSubmit:" destination="Pv1-cQ-s4U" eventType="touchUpInside" id="zlH-0m-YH3"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W26-FB-ZFN" userLabel="CharCount">
-                                <rect key="frame" x="260.5" y="179" width="28.5" height="20.5"/>
+                                <rect key="frame" x="260.5" y="135" width="28.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's happening?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Sq-Mb-ha9">
-                                <rect key="frame" x="20" y="72" width="146.5" height="20.5"/>
+                                <rect key="frame" x="20" y="28" width="146.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

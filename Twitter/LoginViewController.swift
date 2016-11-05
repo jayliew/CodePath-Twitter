@@ -23,7 +23,7 @@ class LoginViewController: UIViewController {
             success: {
                 () -> () in
                 print("--- onLogin SSUUUCCCESSSSSSSSS CALLBACK - LOGIN AUTOMATICALLY")
-                self.performSegue(withIdentifier: "loginSegue", sender: nil)
+                self.performSegue(withIdentifier: "HamburgerSegue", sender: nil)                
             },
             failure: { (error: Error?) in
                 print(error?.localizedDescription ?? "")

@@ -26,15 +26,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     } //UIApplicationOpenURLOptionsKey
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-        let hamburgerViewController = window!.rootViewController as! HamburgerViewController
-        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         
-        let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-        
-        menuViewController.hamburgerViewController = hamburgerViewController
-        hamburgerViewController.menuViewController = menuViewController
+        if User.currentUser != nil {
+            print("--- appdelegate: there is a current user")
+            let hamburgerViewController = window!.rootViewController as! HamburgerViewController
+            let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+            
+            menuViewController.hamburgerViewController = hamburgerViewController
+            hamburgerViewController.menuViewController = menuViewController
+            
+        }else{
+            print("--- appdelegate: there is no current user")
+            let vc = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            window?.rootViewController = vc
+        }
 
         /*
         if User.currentUser != nil {
@@ -60,7 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                                 }
                                                )
  
- */
+         */
         return true
     }
     

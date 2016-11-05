@@ -14,7 +14,10 @@ class User: NSObject {
     var name: String?
     var screen_name: String?
     var profileUrl: URL?
+    var profileUrlInsecure: URL?
+    var bannerUrl: URL?
     var backgroundUrl: URL?
+    var backgroundUrlInsecure: URL?
     var tagline: String?
     var following: Int?
     var followersCount: Int?
@@ -36,7 +39,7 @@ class User: NSObject {
                     if let dictionary = try! JSONSerialization.jsonObject(with: userData, options: []) as? NSDictionary {
                         _currentUser = User(initDictionary: dictionary)
                     }else{
-                        print("--- can't serialize current user from defaults")
+                        print("---!!! can't serialize current user from defaults")
                     }
                 }else{
                     print("--- no current user in defaults")
@@ -70,11 +73,20 @@ class User: NSObject {
         let profileUrlString = initDictionary["profile_image_url_https"] as? String
         if let profileUrlString = profileUrlString{
             profileUrl = URL(string: profileUrlString)
+            print("--------------------- PROFILE IMAGE IS \(profileUrlString)")
+        }else{
+            print("--- !!!!!!!!!!!! ISSUE WITH PROFILE IMAGEEEEE ")
         }
 
-        let backgroundUrlString = initDictionary["profile_background_image_url_https"] as? String
-        if let backgroundUrlString = backgroundUrlString{
-            profileUrl = URL(string: backgroundUrlString)
+        let profileUrlStringInsecure = initDictionary["profile_image_url"] as? String
+        if let profileUrlStringInsecure = profileUrlStringInsecure{
+            profileUrlInsecure = URL(string: profileUrlStringInsecure)
+            
+        }
+
+        let bannerUrlString = initDictionary["profile_banner_url"] as? String
+        if let bannerUrlString = bannerUrlString{
+            bannerUrl = URL(string: bannerUrlString)
         }
         
         if let fCount = initDictionary["followers_count"] as? Int {
@@ -82,7 +94,7 @@ class User: NSObject {
         }
 
         if let fIng = initDictionary["following"] as? Int {
-            followersCount = fIng
+            following = fIng
         }
 
         if let sC = initDictionary["statuses_count"] as? Int {

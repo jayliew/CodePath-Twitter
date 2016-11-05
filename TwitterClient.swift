@@ -25,7 +25,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     // Singleton
     
-    static let sharedInstance = TwitterClient(baseURL: twitterBaseURL, consumerKey: twitterConsumerKey3, consumerSecret: twitterConsumerSecret3)
+    static let sharedInstance = TwitterClient(baseURL: twitterBaseURL, consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
     
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error?) -> ())?
@@ -167,6 +167,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             success: { (dataTask: URLSessionDataTask, response: Any?) in
                 print("--- SUCCESS GET USER")
                 if let dict = response as? NSDictionary{
+                    print(dict)
                     let user = User(initDictionary: dict)
                     success(user)
                 }

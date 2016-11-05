@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import AFNetworking
 
 class ProfileViewController: UIViewController {
-
+    
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     var user: User!
     
@@ -25,9 +27,26 @@ class ProfileViewController: UIViewController {
         nameLabel.text = user.name
         screenNameLabel.text = user.screen_name
         
-
+        print("--- LOADED PROFILE VIEW CONTROLLER")
+        
+        if user.profileUrl != nil {
+            print("--- profile URL \(user.profileUrl!)")
+            profileImageView.setImageWith(user.profileUrl!)
+        }else{
+            if user.profileUrlInsecure != nil {
+                //profileImageView.setImageWith(user.profileUrlInsecure!)
+            }
+        }
+        
+        if user.bannerUrl != nil {
+            backgroundImageView.setImageWith(user.bannerUrl!)
+        }
+        
+        if user.tagline != nil {
+            descriptionLabel.text = user.tagline!
+        }
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
