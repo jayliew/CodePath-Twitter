@@ -65,6 +65,8 @@ class User: NSObject {
     } // currentUser
     
     init(initDictionary: NSDictionary){
+        print(initDictionary)
+        
         self.dictionary = initDictionary as? Dictionary
         name = initDictionary["name"] as? String
         screen_name = initDictionary["screen_name"] as? String
@@ -73,9 +75,6 @@ class User: NSObject {
         let profileUrlString = initDictionary["profile_image_url_https"] as? String
         if let profileUrlString = profileUrlString{
             profileUrl = URL(string: profileUrlString)
-            print("--------------------- PROFILE IMAGE IS \(profileUrlString)")
-        }else{
-            print("--- !!!!!!!!!!!! ISSUE WITH PROFILE IMAGEEEEE ")
         }
 
         let profileUrlStringInsecure = initDictionary["profile_image_url"] as? String
@@ -89,11 +88,16 @@ class User: NSObject {
             bannerUrl = URL(string: bannerUrlString)
         }
         
+        if let sC = initDictionary["statuses_count"] as? Int {
+            statusesCount = sC
+        }
+        
+        //if let fCount = initDictionary["followers_count"] as? Int {
         if let fCount = initDictionary["followers_count"] as? Int {
            followersCount = fCount
         }
 
-        if let fIng = initDictionary["following"] as? Int {
+        if let fIng = initDictionary["friends_count"] as? Int {
             following = fIng
         }
 

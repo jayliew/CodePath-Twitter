@@ -16,6 +16,9 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var followingCount: UILabel!
+    @IBOutlet weak var followersCount: UILabel!
+    @IBOutlet weak var statusesCount: UILabel!
     
     var user: User!
     
@@ -25,16 +28,15 @@ class ProfileViewController: UIViewController {
         let user = User.currentUser!
         
         nameLabel.text = user.name
-        screenNameLabel.text = user.screen_name
+        screenNameLabel.text = "@\(user.screen_name!)"
         
         print("--- LOADED PROFILE VIEW CONTROLLER")
         
         if user.profileUrl != nil {
-            print("--- profile URL \(user.profileUrl!)")
             profileImageView.setImageWith(user.profileUrl!)
         }else{
             if user.profileUrlInsecure != nil {
-                //profileImageView.setImageWith(user.profileUrlInsecure!)
+                profileImageView.setImageWith(user.profileUrlInsecure!)
             }
         }
         
@@ -44,6 +46,18 @@ class ProfileViewController: UIViewController {
         
         if user.tagline != nil {
             descriptionLabel.text = user.tagline!
+        }
+        
+        if user.followersCount != nil {
+            followersCount.text = "\(user.followersCount!)"
+        }
+
+        if user.following != nil {
+            followingCount.text = "\(user.following!)"
+        }
+
+        if user.statusesCount != nil {
+            statusesCount.text = "\(user.statusesCount!)"
         }
     }
     
