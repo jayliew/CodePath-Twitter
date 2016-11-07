@@ -33,8 +33,6 @@ class ReusableTweetCell: UITableViewCell {
                 return
             }
             
-            print("------------- \(tweet.text) 😎 \(tweet.realName) 😎 \(tweet.screenName)")
-            
             tweetTextLabel.text = tweet.text
             
             if let realNameTmp = tweet.realName {

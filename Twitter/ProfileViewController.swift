@@ -1,3 +1,4 @@
+
 //
 //  ProfileViewController.swift
 //  Twitter
@@ -23,6 +24,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var user: User!
     var tweets: [Tweet]!
+    
+    var userDict: Dictionary<String, Any>!
+    var usernamesToGet = [String: Bool]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -72,10 +76,42 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
             statusesCount.text = "\(user.statusesCount!)"
         }
         
+        
+        
         TwitterClient.sharedInstance?.userTimeline(
             screen_name: user.screen_name!,
             success: { (tweets: [Tweet]) in
                 self.tweets = tweets
+                
+                for tweet in tweets{
+                    print("--- TWEETS INSIDE USER TIMELINE ")
+                    print(tweet.screenName)
+                    print(tweet.profileImageUrl)
+                    print(tweet.text)
+                    if let sn = tweet.screenName {
+                        //self.usernamesToGet[sn] = true
+                    }
+                }
+                
+                /*
+                let snl = [String](self.usernamesToGet.keys)
+                
+                print("--- LIST OF SCREEN NAMES")
+                print(snl)
+                
+                TwitterClient.sharedInstance?.usersLookup(screen_name_list: snl,
+                                                          success: { (dicts: NSArray) in
+                                                            
+                                                            print("--- DICT RESULT USER LOOKUP ")
+                                                            print(dicts[0])
+                                                            
+                                                            self.usernamesToGet = [String: Bool]()
+                                                            },
+                                                          failure: { (error: Error?) in
+                                                        })
+                
+                */
+                
                 self.tableView.reloadData()
             },
             failure: { (error: Error?) in

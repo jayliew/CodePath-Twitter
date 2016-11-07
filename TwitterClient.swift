@@ -23,11 +23,43 @@ let twitterBaseURL = URL(string: "https://api.twitter.com")
 class TwitterClient: BDBOAuth1SessionManager {
     
     // Singleton
-    
     static let sharedInstance = TwitterClient(baseURL: twitterBaseURL, consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
     
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error?) -> ())?
+    
+    func usersLookup(screen_name_list: [String],
+                     success: @escaping (NSArray) -> (),
+                     failure: @escaping (Error?) -> ()){
+        
+        guard let client = TwitterClient.sharedInstance else {
+            return
+        }
+        
+        let endpoint = "https://api.twitter.com/1.1/users/lookup.json"
+        //let params = ["screen_name": screen_name_list]
+        let params = ["screen_name": ["jaysern"]]
+        
+        print(screen_name_list)
+        
+        client.get(endpoint,
+                   parameters: params,
+                   progress: { (progress: Progress) in
+                    print("--- PROGRESS in USERS LOOKUP")
+                    },
+                   success: { (dataTask: URLSessionDataTask, response: Any?) in
+                    print("--- SUCCESS in USERS LOOKUP")
+                    if let responseArray = response as? NSArray{
+                        //success(tweets)
+                        //success(User.usersWithArray(dictionaries: responseArray))
+                        success(responseArray)
+                    }
+                    },
+                   failure: { (dataTask: URLSessionDataTask?, error: Error) in
+                    print("--- FAILURE in USERS LOOKUP: \(error.localizedDescription)")
+                    }
+        )
+    } // userTimeline
     
     func userTimeline(screen_name: String, success: @escaping ([Tweet]) -> (), failure: @escaping (Error?) -> ()){
         guard let client = TwitterClient.sharedInstance else {
@@ -38,25 +70,25 @@ class TwitterClient: BDBOAuth1SessionManager {
         let params = ["screen_name": screen_name,
                       //"count": 200,
             "include_rts": 1,
-            "trim_user": true,
-            "exclude_replies": true,
+            //"trim_user": true,
+            //"exclude_replies": true,
             ] as [String : Any]
         
         client.get(endpoint,
                    parameters: params,
                    progress: { (progress: Progress) in
                     print("--- PROGRESS in USER TIMELINE: \(screen_name)")
-                    },
+        },
                    success: { (dataTask: URLSessionDataTask, response: Any?) in
                     print("--- SUCCESS in USER TIMELINE: \(screen_name)")
-                        if let responseArray = response as? [Dictionary <String, Any>]{
-                            let tweets = Tweet.tweetsWithArray(dictionaries: responseArray)
-                            success(tweets)
-                        }
-                    },
-                    failure: { (dataTask: URLSessionDataTask?, error: Error) in
-                    print("--- FAILURE in USER TIMELINE: \(screen_name)")
+                    if let responseArray = response as? [Dictionary <String, Any>]{
+                        let tweets = Tweet.tweetsWithArray(dictionaries: responseArray)
+                        success(tweets)
                     }
+        },
+                   failure: { (dataTask: URLSessionDataTask?, error: Error) in
+                    print("--- FAILURE in USER TIMELINE: \(screen_name)")
+        }
         )
     } // userTimeline
     
