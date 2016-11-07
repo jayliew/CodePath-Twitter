@@ -16,6 +16,22 @@ class HamburgerViewController: UIViewController {
     @IBOutlet weak var contentViewLeading: NSLayoutConstraint!
     var originalLeftMargin: CGFloat!
     
+    override func viewDidLoad() {
+        /*
+         let hamburgerViewController = window!.rootViewController as! HamburgerViewController
+         let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+         
+         */
+        super.viewDidLoad()
+        
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let menuViewController = storyboard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+
+        menuViewController.hamburgerViewController = self
+        self.menuViewController = menuViewController
+
+    }
+    
     var menuViewController: UIViewController! {
         didSet {
             view.layoutIfNeeded()
@@ -42,12 +58,6 @@ class HamburgerViewController: UIViewController {
                     self.view.layoutIfNeeded()
             })
         }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
     
     @IBAction func onPanGesture(_ sender: UIPanGestureRecognizer) {

@@ -28,6 +28,7 @@ class TwitterClient: BDBOAuth1SessionManager {
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error?) -> ())?
     
+    /*
     func usersLookup(screen_name_list: [String],
                      success: @escaping (NSArray) -> (),
                      failure: @escaping (Error?) -> ()){
@@ -60,6 +61,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                     }
         )
     } // userTimeline
+ */
     
     func userTimeline(screen_name: String, success: @escaping ([Tweet]) -> (), failure: @escaping (Error?) -> ()){
         guard let client = TwitterClient.sharedInstance else {
