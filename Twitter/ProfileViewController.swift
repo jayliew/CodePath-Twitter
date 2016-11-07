@@ -9,7 +9,7 @@
 import UIKit
 import AFNetworking
 
-class ProfileViewController: UIViewController {
+class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -19,11 +19,23 @@ class ProfileViewController: UIViewController {
     @IBOutlet weak var followingCount: UILabel!
     @IBOutlet weak var followersCount: UILabel!
     @IBOutlet weak var statusesCount: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     var user: User!
+    var tweets: [Tweet]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        self.automaticallyAdjustsScrollViewInsets = false
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 220
+        
+        tableView.register(UINib(nibName: "ReusableTweetCell", bundle: nil), forCellReuseIdentifier: "ReusableTweetCell")
         
         let user = User.currentUser!
         
@@ -58,6 +70,31 @@ class ProfileViewController: UIViewController {
 
         if user.statusesCount != nil {
             statusesCount.text = "\(user.statusesCount!)"
+        }
+        
+        TwitterClient.sharedInstance?.userTimeline(
+            screen_name: user.screen_name!,
+            success: { (tweets: [Tweet]) in
+                self.tweets = tweets
+                self.tableView.reloadData()
+            },
+            failure: { (error: Error?) in
+                print("---!!! USER TIMELINE FAILURE")
+            })
+        
+    } // viewDidLoad
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableTweetCell", for: indexPath) as! ReusableTweetCell
+        cell.tweet = tweets[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if tweets != nil {
+            return tweets.count
+        }else{
+            return 0
         }
     }
     

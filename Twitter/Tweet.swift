@@ -33,9 +33,17 @@ class Tweet: NSObject {
                 self.id = id_int.int64Value
                 print("--- TWEET ID IS: \(self.id)")
             }
+        }else{
+            print("---!!! NO TWEET ID? IMPOSSIBLE ")
         }
 
+        print("--- TWEET INIT DICT")
+        print(dictionary)
+        
         if let rt_status = dictionary["retweeted_status"] as? Dictionary<String, Any>{
+            
+            print("--- RTSTATUS: ")
+            print(rt_status)
             
             if let retweeted = rt_status["retweeted"] as? Bool{
                 self.retweeted = retweeted
@@ -48,7 +56,11 @@ class Tweet: NSObject {
             if let user = rt_status["user"] as? Dictionary<String, Any> {
                 self.user = user
                 
-                text = (rt_status["text"] as? String) ?? ""
+                if let statusText = rt_status["text"] as? String {
+                    self.text = statusText
+                }else{
+                    self.text = ""
+                }
                 retweetCount = (rt_status["retweet_count"] as? Int) ?? 0
                 favouritesCount = (rt_status["favorite_count"] as? Int) ?? 0
                 
@@ -65,13 +77,42 @@ class Tweet: NSObject {
                         self.profileImageUrl = realUrl
                     }
                 }
+                
+                var screenNameInRTUser = false
+                var realNameInRTUser = false
                 if let screenName = user["screen_name"] as? String {
                     self.screenName = screenName
+                    screenNameInRTUser = true
                 }
                 if let realName = user["name"] as? String {
                     self.realName = realName
+                    realNameInRTUser = true
                 }
-            }
+                
+                if screenNameInRTUser == false || realNameInRTUser == false{
+                    // if it's not in the retweeted_status > user dict
+                    // look for it in the entities dict
+                    
+                    if let entities = dictionary["entities"] as? Dictionary<String, Any> {
+                        print("--- ENTITIES")
+                        if let user_mentions = entities["user_mentions"] as? [Dictionary<String, Any>] {
+                            print("--- USER MENTIONS")
+                            if let name = user_mentions[0]["name"] as? String{
+                                print("--- ENTITIES > USER MENTIONS > REAL NAME: \(name)")
+                                self.realName = name
+                            }
+                            if let screenNameTmp = user_mentions[0]["screen_name"] as? String{
+                                self.screenName = screenNameTmp
+                            }
+                        }else{
+                            print("---!!! USER MENTIONS")
+                        }
+                    }else{
+                        print("---!!! ENTITIES")
+                    }
+                }
+
+            }else
             
             if let retweetedByUser = dictionary["user"] as? Dictionary<String, Any> {
                 if let realName = retweetedByUser["name"] as? String {

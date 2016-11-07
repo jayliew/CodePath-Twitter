@@ -20,7 +20,6 @@ let twitterConsumerSecret3 = "reFinEL7pEcDPfWlTjHhbxNDEaelTrEjuqz1iTljN3G2BKO5AR
 
 let twitterBaseURL = URL(string: "https://api.twitter.com")
 
-
 class TwitterClient: BDBOAuth1SessionManager {
     
     // Singleton
@@ -29,6 +28,37 @@ class TwitterClient: BDBOAuth1SessionManager {
     
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error?) -> ())?
+    
+    func userTimeline(screen_name: String, success: @escaping ([Tweet]) -> (), failure: @escaping (Error?) -> ()){
+        guard let client = TwitterClient.sharedInstance else {
+            return
+        }
+        let endpoint = "1.1/statuses/user_timeline.json"
+        
+        let params = ["screen_name": screen_name,
+                      //"count": 200,
+            "include_rts": 1,
+            "trim_user": true,
+            "exclude_replies": true,
+            ] as [String : Any]
+        
+        client.get(endpoint,
+                   parameters: params,
+                   progress: { (progress: Progress) in
+                    print("--- PROGRESS in USER TIMELINE: \(screen_name)")
+                    },
+                   success: { (dataTask: URLSessionDataTask, response: Any?) in
+                    print("--- SUCCESS in USER TIMELINE: \(screen_name)")
+                        if let responseArray = response as? [Dictionary <String, Any>]{
+                            let tweets = Tweet.tweetsWithArray(dictionaries: responseArray)
+                            success(tweets)
+                        }
+                    },
+                    failure: { (dataTask: URLSessionDataTask?, error: Error) in
+                    print("--- FAILURE in USER TIMELINE: \(screen_name)")
+                    }
+        )
+    } // userTimeline
     
     func favorite(id: Int64, create: Bool, success: @escaping () -> ()?, failure: @escaping (Error?) -> ()?){
         guard let client = TwitterClient.sharedInstance else {
@@ -49,15 +79,15 @@ class TwitterClient: BDBOAuth1SessionManager {
                     parameters: params,
                     progress: { (progress: Progress) in
                         print("--- progress in FAVE")
-            },
+        },
                     success: { (dataTask: URLSessionDataTask, response: Any?) in
                         print("--- SUCCESS in FAVE to \(create)")
                         success()
-            },
+        },
                     failure: { (dataTask: URLSessionDataTask?, error: Error) in
                         print("--- FAIL in FAVE to \(create)")
                         failure(error)
-            }
+        }
         ) // client.post
     } // favorite
     
@@ -80,15 +110,15 @@ class TwitterClient: BDBOAuth1SessionManager {
                     parameters: params,
                     progress: { (progress: Progress) in
                         print("--- progress in retweeting to \(doit)")
-            },
+        },
                     success: { (dataTask: URLSessionDataTask, response: Any?) in
                         print("--- SUCCESS in REtweet to \(doit)")
                         success()
-            },
+        },
                     failure: { (dataTask: URLSessionDataTask?, error: Error) in
                         print("--- FAIL in REtweet to \(doit)")
                         failure(error)
-            }
+        }
         ) // client.post
     } // retweet
     
@@ -96,7 +126,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         guard let client = TwitterClient.sharedInstance else {
             return
         }
-  
+        
         if(tweet.characters.count > 140 || tweet.characters.count == 0){
             failure(nil)
             return
@@ -114,15 +144,15 @@ class TwitterClient: BDBOAuth1SessionManager {
                     parameters: params,
                     progress: { (progress: Progress) in
                         print("--- progress in posting  tweet")
-                    },
+        },
                     success: { (dataTask: URLSessionDataTask, response: Any?) in
                         print("--- SUCCESS in posting tweet")
                         success()
-                    },
+        },
                     failure: { (dataTask: URLSessionDataTask?, error: Error) in
                         print("--- FAIL in posting tweet")
                         failure(error)
-                    }
+        }
         ) // client.post
         
     }//postTweet
@@ -137,18 +167,18 @@ class TwitterClient: BDBOAuth1SessionManager {
             parameters: nil,
             progress: { (progress: Progress) in
                 print("--- progress downloading home timeline")
-            },
+        },
             success: { (dataTask: URLSessionDataTask, response: Any?) in
                 print("--- SUCCESS GET home timeline")
                 if let responseArray = response as? [Dictionary <String, Any>]{
                     let tweets = Tweet.tweetsWithArray(dictionaries: responseArray)
                     success(tweets)
                 }
-            }, // success
+        }, // success
             failure: { (dataTask: URLSessionDataTask?, error: Error) in
                 print("--- GET FAILURE home timeline")
                 failure(error)
-            } // failure
+        } // failure
         ) // get data
         
     } // homeTimeline
@@ -163,7 +193,7 @@ class TwitterClient: BDBOAuth1SessionManager {
             parameters: nil,
             progress: { (progress: Progress) in
                 print("--- progress downloading USER")
-            },
+        },
             success: { (dataTask: URLSessionDataTask, response: Any?) in
                 print("--- SUCCESS GET USER")
                 if let dict = response as? NSDictionary{
@@ -171,11 +201,11 @@ class TwitterClient: BDBOAuth1SessionManager {
                     let user = User(initDictionary: dict)
                     success(user)
                 }
-            }, // success
+        }, // success
             failure: { (dataTask: URLSessionDataTask?, error: Error) in
                 print("--- GET FAILURE USER")
                 failure(error)
-            } // failure
+        } // failure
         ) // get data
         
     } // currentAccount
@@ -198,21 +228,21 @@ class TwitterClient: BDBOAuth1SessionManager {
                                             // print(user)
                                             User.currentUser = user
                                             self.loginSuccess?()
-                                        },
+                                    },
                                         failure: { (error: Error?) in
                                             self.loginFailure?(error)
-                                        }
+                                    }
                                     )
                                     
                                     //self.loginSuccess?()
-            }, // success fetch access
+        }, // success fetch access
             failure: { (error: Error?) in
                 if error != nil {
                     self.loginFailure?(error!)
                 }else{
                     print("--- ACCESS token fail")
                 }
-            } // fail
+        } // fail
         ) // fetchAccessToken
         
     }
@@ -222,7 +252,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         deauthorize()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: User.userDidLogoutNotification), object: nil)
     }
-
+    
     func login(success:@escaping () -> (), failure:@escaping (Error?) -> ()){
         let client = TwitterClient.sharedInstance
         loginSuccess = success // callback

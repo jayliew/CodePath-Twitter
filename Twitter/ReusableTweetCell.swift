@@ -1,16 +1,16 @@
-//
-//  TweetCell.swift
+ //
+//  ReusableTweetCell.swift
 //  Twitter
 //
-//  Created by Jay Liew on 10/28/16.
+//  Created by Jay Liew on 11/6/16.
 //  Copyright © 2016 Jay Liew. All rights reserved.
 //
 
 import UIKit
 import AFNetworking
 
-class TweetCell: UITableViewCell {
-
+class ReusableTweetCell: UITableViewCell {
+    
     @IBOutlet weak var topRetweetImageView: UIImageView!
     @IBOutlet weak var topRetweetLabel: UILabel!
     
@@ -33,9 +33,21 @@ class TweetCell: UITableViewCell {
                 return
             }
             
+            print("------------- \(tweet.text) 😎 \(tweet.realName) 😎 \(tweet.screenName)")
+            
             tweetTextLabel.text = tweet.text
-            nameLabel.text = tweet.realName
-            screenNameLabel.text = "@\(tweet.screenName!)"
+            
+            if let realNameTmp = tweet.realName {
+                nameLabel.text = realNameTmp
+            }else{
+                nameLabel.text = "\(User.currentUser!.name!)"
+            }
+
+            if let screenNameTmp = tweet.screenName {
+                screenNameLabel.text = "@\(screenNameTmp)"
+            }else{
+                screenNameLabel.text = "@\(User.currentUser!.screen_name!)"
+            }
             
             if let profileImageUrl = tweet.profileImageUrl {
                 self.profileImageView.setImageWith(profileImageUrl)
@@ -69,7 +81,7 @@ class TweetCell: UITableViewCell {
                 }else{
                     heartActionImageView.image = UIImage(named: "heart.png")
                 }
-            }            
+            }
         }
     }
     
@@ -140,9 +152,10 @@ class TweetCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
-
+    
 }
+

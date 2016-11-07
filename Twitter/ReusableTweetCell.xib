@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="11542" systemVersion="15G1108" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableTweetCell" rowHeight="200" id="l6U-xI-zb9" userLabel="ReusableTweetCell" customClass="ReusableTweetCell" customModule="Twitter" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="l6U-xI-zb9" id="1aJ-vW-8Z8">
+                <rect key="frame" x="0.0" y="0.0" width="375" height="199"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" axis="vertical" alignment="bottom" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="rEJ-AH-39k" userLabel="Left Stack">
+                        <rect key="frame" x="8" y="8" width="70" height="87"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet.png" translatesAutoresizingMaskIntoConstraints="NO" id="C5v-6f-SFf">
+                                <rect key="frame" x="56" y="0.0" width="14" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="14" id="8z9-4a-tpV"/>
+                                    <constraint firstAttribute="height" constant="14" id="tst-cq-jPy"/>
+                                </constraints>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WRo-Jd-uiN">
+                                <rect key="frame" x="0.0" y="17" width="70" height="70"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="8KY-Z7-zqr"/>
+                                    <constraint firstAttribute="height" constant="70" id="AeF-cA-Ckp"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="WRo-Jd-uiN" firstAttribute="width" secondItem="rEJ-AH-39k" secondAttribute="width" id="emk-rv-dqe"/>
+                        </constraints>
+                    </stackView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="SMh-cJ-SIU" userLabel="Right Stack">
+                        <rect key="frame" x="83" y="8" width="284" height="183"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="pmarca retweeted" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SeN-ZF-lZy">
+                                <rect key="frame" x="0.0" y="0.0" width="97.5" height="14"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="3" translatesAutoresizingMaskIntoConstraints="NO" id="52A-cn-ZAn" userLabel="Name Date Stack">
+                                <rect key="frame" x="0.0" y="17" width="137" height="17"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="752" text="Jay Liew" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYD-mT-YvU">
+                                        <rect key="frame" x="0.0" y="0.0" width="58.5" height="17"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="@jaysern" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fWe-eE-X90" userLabel="Screen Name">
+                                        <rect key="frame" x="61.5" y="0.0" width="48.5" height="17"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="34m" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vjo-kj-3fg">
+                                        <rect key="frame" x="113" y="0.0" width="24" height="17"/>
+                                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                        <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="fdsfsddfs" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EjV-hy-sZx">
+                                <rect key="frame" x="0.0" y="37" width="58.5" height="121"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="8ed-WE-Wfe" userLabel="Actions Stack">
+                                <rect key="frame" x="0.0" y="161" width="181" height="22"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="V0H-vv-6Wt" userLabel="Reply Stack">
+                                        <rect key="frame" x="0.0" y="0.0" width="46" height="22"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="reply.png" translatesAutoresizingMaskIntoConstraints="NO" id="bjG-5z-Uzp">
+                                                <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="22" id="Dvb-Au-kIP"/>
+                                                    <constraint firstAttribute="width" constant="22" id="gXK-dI-H5K"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="xxx" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZYI-ds-Vg7" userLabel="Reply Padding">
+                                                <rect key="frame" x="27" y="0.0" width="19" height="22"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                <color key="textColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="mzu-pd-ATM" userLabel="RT Stack">
+                                        <rect key="frame" x="66" y="0.0" width="47.5" height="22"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet.png" translatesAutoresizingMaskIntoConstraints="NO" id="Ve3-FH-2Bu">
+                                                <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="22" id="Je1-ad-Onm"/>
+                                                    <constraint firstAttribute="width" constant="22" id="lxD-mS-h8e"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="111" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ife-su-Jks" userLabel="RTCount">
+                                                <rect key="frame" x="27" y="0.0" width="20.5" height="22"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="K4e-J8-qch" userLabel="Star Stack">
+                                        <rect key="frame" x="133.5" y="0.0" width="47.5" height="22"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart.png" translatesAutoresizingMaskIntoConstraints="NO" id="4UQ-zU-W3A">
+                                                <rect key="frame" x="0.0" y="0.0" width="22" height="22"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="22" id="HG4-m1-PnA"/>
+                                                    <constraint firstAttribute="height" constant="22" id="pBY-7Y-qA5"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvz-Pd-2Q8" userLabel="FavoritesCount">
+                                                <rect key="frame" x="27" y="0.0" width="20.5" height="22"/>
+                                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                <color key="textColor" red="0.53333333329999999" green="0.53333333329999999" blue="0.53333333329999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="SMh-cJ-SIU" secondAttribute="bottom" id="3I6-pb-MNK"/>
+                    <constraint firstItem="rEJ-AH-39k" firstAttribute="top" secondItem="1aJ-vW-8Z8" secondAttribute="topMargin" id="FMk-tp-LrQ"/>
+                    <constraint firstItem="SMh-cJ-SIU" firstAttribute="top" secondItem="1aJ-vW-8Z8" secondAttribute="topMargin" id="MU8-kB-ma8"/>
+                    <constraint firstItem="rEJ-AH-39k" firstAttribute="leading" secondItem="1aJ-vW-8Z8" secondAttribute="leadingMargin" id="T4A-SB-SnH"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="SMh-cJ-SIU" secondAttribute="trailing" id="Tww-EQ-KBs"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="rEJ-AH-39k" secondAttribute="bottom" id="Y1d-w6-01R"/>
+                    <constraint firstItem="SMh-cJ-SIU" firstAttribute="leading" secondItem="rEJ-AH-39k" secondAttribute="trailing" constant="5" id="qxd-ii-T9o"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="favoritesCountLabel" destination="Jvz-Pd-2Q8" id="Aq2-by-ptY"/>
+                <outlet property="heartActionImageView" destination="4UQ-zU-W3A" id="al7-DT-9Xm"/>
+                <outlet property="nameLabel" destination="tYD-mT-YvU" id="FFV-Fr-05D"/>
+                <outlet property="profileImageView" destination="WRo-Jd-uiN" id="A5u-AT-j5x"/>
+                <outlet property="retweetActionImageView" destination="Ve3-FH-2Bu" id="j9v-qW-tfW"/>
+                <outlet property="retweetCountLabel" destination="Ife-su-Jks" id="MnP-N5-8od"/>
+                <outlet property="screenNameLabel" destination="fWe-eE-X90" id="lMO-QM-afd"/>
+                <outlet property="timestampLabel" destination="Vjo-kj-3fg" id="xux-4B-ncY"/>
+                <outlet property="topRetweetImageView" destination="C5v-6f-SFf" id="yhA-lm-RaB"/>
+                <outlet property="topRetweetLabel" destination="SeN-ZF-lZy" id="BGX-ra-2f1"/>
+                <outlet property="tweetTextLabel" destination="EjV-hy-sZx" id="oRD-yw-B8f"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="heart.png" width="32" height="32"/>
+        <image name="reply.png" width="32" height="32"/>
+        <image name="retweet.png" width="32" height="32"/>
+    </resources>
+</document>

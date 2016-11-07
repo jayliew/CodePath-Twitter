@@ -77,6 +77,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             print("--- PREPARE FOR SEGUE TO DETAILS VIEW ")
             let navController = segue.destination as! UINavigationController
             let detailsViewController = navController.topViewController as! TweetDetailViewController
+            //let cell = sender as! ReusableTweetCell
             let cell = sender as! TweetCell
             let indexPath = tableView.indexPath(for: cell)!
             detailsViewController.tweet = tweets![indexPath.row]
@@ -87,6 +88,8 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {    
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetCell", for: indexPath) as! TweetCell
+        //let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableTweetCell", for: indexPath) as! ReusableTweetCell
+        
         cell.tweet = nil
         cell.tweet = tweets?[indexPath.row]
         return cell
