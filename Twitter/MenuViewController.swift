@@ -15,11 +15,12 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
     var viewControllers: [UIViewController] = []
     
     private var homeTimelineNavigationController: UIViewController!
+    private var mentionsTimelineNavigationController: UINavigationController!
     private var profileNavigationController: UIViewController!
     
     var hamburgerViewController: HamburgerViewController!
     
-    var menuLabels = ["Home", "Profile"]
+    var menuLabels = ["Home", "Profile", "Mentions"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,13 @@ class MenuViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         profileNavigationController = storyboard.instantiateViewController(withIdentifier: "ProfileNavigationViewController")
         viewControllers.append(profileNavigationController)
+
+        mentionsTimelineNavigationController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController") as! UINavigationController
         
+        let mentionsVC = mentionsTimelineNavigationController.topViewController as! TweetsViewController
+        mentionsVC.mentionsTimelineEnabled = true
+        viewControllers.append(mentionsTimelineNavigationController)
+
         hamburgerViewController.contentViewController = homeTimelineNavigationController // set as default content on first load up
     }
     

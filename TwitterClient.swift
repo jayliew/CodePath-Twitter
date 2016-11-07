@@ -18,15 +18,45 @@ let twitterConsumerSecret2 = "N3TPdHag1Fm9Qgh7dxsP7GeJb54l3csTYKLOXA5kv4YvqW5560
 let twitterConsumerKey3 = "Vw2ghPycSd9XwOzAxJbi9dwOa"
 let twitterConsumerSecret3 = "reFinEL7pEcDPfWlTjHhbxNDEaelTrEjuqz1iTljN3G2BKO5AR"
 
+let twitterConsumerKey4 = "YRL2wTiPuOYb4karvjHIZcVvA"
+let twitterConsumerSecret4 = "z3eG5bXqk4D1AAtXk5I2r8EpMeCiomYXQBD2kOpJl3LbyJMaSu"
+
 let twitterBaseURL = URL(string: "https://api.twitter.com")
 
 class TwitterClient: BDBOAuth1SessionManager {
     
     // Singleton
-    static let sharedInstance = TwitterClient(baseURL: twitterBaseURL, consumerKey: twitterConsumerKey, consumerSecret: twitterConsumerSecret)
+    static let sharedInstance = TwitterClient(baseURL: twitterBaseURL,
+                                              consumerKey: twitterConsumerKey,
+                                              consumerSecret: twitterConsumerSecret)
     
     var loginSuccess: (() -> ())?
     var loginFailure: ((Error?) -> ())?
+    
+    func mentionsTimeline(success: @escaping ([Tweet]) -> (), failure: @escaping (Error?) -> ()){
+        guard let client = TwitterClient.sharedInstance else {
+            return
+        }
+        let endpoint = "https://api.twitter.com/1.1/statuses/mentions_timeline.json"
+        
+        client.get(endpoint,
+                   parameters: nil,
+                   progress: { (progress: Progress) in
+                    print("--- PROGRESS in MENTIONS TIMELINE")
+        },
+                   success: { (dataTask: URLSessionDataTask, response: Any?) in
+                    print("--- SUCCESS in MENTIONS TIMELINE")
+                    if let responseArray = response as? [Dictionary <String, Any>]{
+                        let tweets = Tweet.tweetsWithArray(dictionaries: responseArray)
+                        success(tweets)
+                    }
+        },
+                   failure: { (dataTask: URLSessionDataTask?, error: Error) in
+                    print("--- FAILURE in MENTIONS TIMELINE")
+        }
+        )
+    } // mentionsTimeline
+
     
     /*
     func usersLookup(screen_name_list: [String],
@@ -274,7 +304,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                 if error != nil {
                     self.loginFailure?(error!)
                 }else{
-                    print("--- ACCESS token fail")
+                    print("--- ACCESS token fail \(error?.localizedDescription)")
                 }
         } // fail
         ) // fetchAccessToken

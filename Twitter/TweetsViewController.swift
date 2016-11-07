@@ -16,6 +16,7 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     var client: TwitterClient!
     let refreshControl = UIRefreshControl()
     let blueLogo = UIColor(red:0.00, green:0.67, blue:0.93, alpha:1.0)
+    var mentionsTimelineEnabled = false
     
     override func viewWillAppear(_ animated: Bool) {
         refreshControlAction(refreshControl: refreshControl)
@@ -41,15 +42,28 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 220
         
-        client.homeTimeline(
-            success: { (tweets: [Tweet]) -> () in
-                self.tweets = tweets
-                self.tableView.reloadData()
+        if mentionsTimelineEnabled == true{
+            client.mentionsTimeline(
+                success: { (tweets: [Tweet]) -> () in
+                    self.tweets = tweets
+                    self.tableView.reloadData()
             },
-            failure: { (error: Error?) -> () in
-                print("--- ERROR in getting home timeline" + error!.localizedDescription)
+                failure: { (error: Error?) -> () in
+                    print("--- ERROR in getting MENTIONS timeline" + error!.localizedDescription)
             }
-        ) // homeTimeline
+            ) // homeTimeline
+
+        }else{
+            client.homeTimeline(
+                success: { (tweets: [Tweet]) -> () in
+                    self.tweets = tweets
+                    self.tableView.reloadData()
+            },
+                failure: { (error: Error?) -> () in
+                    print("--- ERROR in getting home timeline" + error!.localizedDescription)
+            }
+            ) // homeTimeline
+        } // if mentionsTimelineEnabled
 
         refreshControl.addTarget(self, action: #selector(refreshControlAction), for: .valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
@@ -59,15 +73,28 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
     func refreshControlAction(refreshControl: UIRefreshControl){
         print("--- refreshing ... ")
         
-        self.client.homeTimeline(
-            success: { (tweets: [Tweet]) -> () in
-                self.tweets = tweets
-                self.tableView.reloadData()
+        if mentionsTimelineEnabled == true{
+            client.mentionsTimeline(
+                success: { (tweets: [Tweet]) -> () in
+                    self.tweets = tweets
+                    self.tableView.reloadData()
             },
-            failure: { (error: Error?) -> () in
-                print("--- ERROR in getting home timeline" + error!.localizedDescription)
+                failure: { (error: Error?) -> () in
+                    print("--- ERROR in getting MENTIONS timeline" + error!.localizedDescription)
             }
-        ) // homeTimeline
+            ) // homeTimeline
+            
+        }else{
+            client.homeTimeline(
+                success: { (tweets: [Tweet]) -> () in
+                    self.tweets = tweets
+                    self.tableView.reloadData()
+            },
+                failure: { (error: Error?) -> () in
+                    print("--- ERROR in getting home timeline" + error!.localizedDescription)
+            }
+            ) // homeTimeline
+        } // if mentionsTimelineEnabled
         
         refreshControl.endRefreshing()
     }
