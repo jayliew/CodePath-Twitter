@@ -29,8 +29,9 @@
                                     <constraint firstAttribute="height" constant="14" id="tst-cq-jPy"/>
                                 </constraints>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WRo-Jd-uiN">
+                            <imageView contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WRo-Jd-uiN">
                                 <rect key="frame" x="0.0" y="17" width="70" height="70"/>
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="8KY-Z7-zqr"/>
                                     <constraint firstAttribute="height" constant="70" id="AeF-cA-Ckp"/>

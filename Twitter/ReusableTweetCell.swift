@@ -9,6 +9,10 @@
 import UIKit
 import AFNetworking
 
+protocol myTableDelegate {
+    func myTableDelegate(index: Int)
+}
+ 
 class ReusableTweetCell: UITableViewCell {
     
     @IBOutlet weak var topRetweetImageView: UIImageView!
@@ -26,6 +30,15 @@ class ReusableTweetCell: UITableViewCell {
     
     @IBOutlet weak var heartActionImageView: UIImageView!
     @IBOutlet weak var retweetActionImageView: UIImageView!
+    
+    @IBOutlet weak var tapGesture: UITapGestureRecognizer!
+    
+    var delegate: myTableDelegate!
+    var cellNum: Int! {
+        didSet{
+            print("--- CELL NUM IS \(cellNum)")
+        }
+    }
     
     var tweet: Tweet! {
         didSet{
@@ -81,6 +94,12 @@ class ReusableTweetCell: UITableViewCell {
                 }
             }
         }
+    }
+    
+    @IBAction func onTap(_ sender: Any) {
+        print("--- USER PROFILE TAPPPPPPPP celnum is: \(cellNum)")
+        delegate.myTableDelegate(index: cellNum)
+        
     }
     
     func timeAgoSinceDate(date:Date, numericDates:Bool) -> String {
@@ -144,11 +163,17 @@ class ReusableTweetCell: UITableViewCell {
         } else {
             return "Just now"
         }
-        
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        let tapImageUserGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ReusableTweetCell.onTap))
+        
+        profileImageView.addGestureRecognizer(tapImageUserGestureRecognizer)
+        profileImageView.isUserInteractionEnabled = true
+        
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {

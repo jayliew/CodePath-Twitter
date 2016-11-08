@@ -2,7 +2,7 @@
 
 **CodePath-Twitter** is a basic twitter app to read and compose tweets from the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **** hours spent in total
+Time spent: **19** hours spent in total
 
 ## User Stories
 
@@ -15,8 +15,8 @@ The following **required** functionality is completed:
 - [x] Profile page
    - [x] Contains the user header view
    - [x] Contains a section with the users basic stats: # tweets, # following, # followers
-- [ ] Home Timeline
-   - [ ] Tapping on a user image should bring up that user's profile page
+- [x] Home Timeline
+   - [x] Tapping on a user image should bring up that user's profile page
 
 The following **optional** features are implemented:
 
@@ -44,7 +44,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-![Video Walkthrough](twitter-client.gif)
+![Video Walkthrough](twitter-client2.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

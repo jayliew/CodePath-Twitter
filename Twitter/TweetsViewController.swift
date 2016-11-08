@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, myTableDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -108,7 +108,26 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
             //let cell = sender as! TweetCell
             let indexPath = tableView.indexPath(for: cell)!
             detailsViewController.tweet = tweets![indexPath.row]
+        }else if(segue.identifier == "profileViewSegue"){
+            print("--- PREPARE FOR SEGUE TO PROFILE VIEW ")
+            let navController = segue.destination as! UINavigationController
+            let profileViewController = navController.topViewController as! ProfileViewController
+            
+            print("--- PREPARE FOR SEGUE TO PROFILE VIEW FROM IMAGE TAP \(destinationNum)")
+            print("--- PREPARE FOR SEGUE TO PROFILE VIEW FROM IMAGE TAP \(tweets![destinationNum])")
+            print("--- PREPARE FOR SEGUE TO PROFILE VIEW FROM IMAGE TAP \(tweets![destinationNum].screenName)")
+            
+            profileViewController.screenNameToGet = tweets![destinationNum].screenName
         }
+        
+    }
+    
+    var destinationNum: Int!
+    
+    func myTableDelegate(index: Int) {
+        self.destinationNum = index
+        print("--- DESTINATION NUM IS \(self.destinationNum)")
+        self.performSegue(withIdentifier: "profileViewSegue", sender: nil)
     }
     
     // MARK: UITableView Delegates
@@ -119,6 +138,9 @@ class TweetsViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         cell.tweet = nil
         cell.tweet = tweets?[indexPath.row]
+        cell.delegate = self
+        cell.cellNum = indexPath.row
+        
         return cell
     }
     

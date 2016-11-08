@@ -58,20 +58,18 @@ class TwitterClient: BDBOAuth1SessionManager {
     } // mentionsTimeline
 
     
-    /*
-    func usersLookup(screen_name_list: [String],
-                     success: @escaping (NSArray) -> (),
+    
+    func usersShow(screen_name: String,
+                     success: @escaping (User) -> (),
                      failure: @escaping (Error?) -> ()){
         
         guard let client = TwitterClient.sharedInstance else {
             return
         }
         
-        let endpoint = "https://api.twitter.com/1.1/users/lookup.json"
+        let endpoint = "https://api.twitter.com/1.1/users/show.json"
         //let params = ["screen_name": screen_name_list]
-        let params = ["screen_name": ["jaysern"]]
-        
-        print(screen_name_list)
+        let params = ["screen_name": screen_name]
         
         client.get(endpoint,
                    parameters: params,
@@ -80,10 +78,9 @@ class TwitterClient: BDBOAuth1SessionManager {
                     },
                    success: { (dataTask: URLSessionDataTask, response: Any?) in
                     print("--- SUCCESS in USERS LOOKUP")
-                    if let responseArray = response as? NSArray{
-                        //success(tweets)
-                        //success(User.usersWithArray(dictionaries: responseArray))
-                        success(responseArray)
+                    if let response = response as? NSDictionary{
+                        let uu = User(initDictionary: response)
+                        success(uu)
                     }
                     },
                    failure: { (dataTask: URLSessionDataTask?, error: Error) in
@@ -91,7 +88,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                     }
         )
     } // userTimeline
- */
+ 
     
     func userTimeline(screen_name: String, success: @escaping ([Tweet]) -> (), failure: @escaping (Error?) -> ()){
         guard let client = TwitterClient.sharedInstance else {
@@ -100,7 +97,7 @@ class TwitterClient: BDBOAuth1SessionManager {
         let endpoint = "1.1/statuses/user_timeline.json"
         
         let params = ["screen_name": screen_name,
-                      //"count": 200,
+                      "count": 200,
             "include_rts": 1,
             //"trim_user": true,
             //"exclude_replies": true,
@@ -114,6 +111,7 @@ class TwitterClient: BDBOAuth1SessionManager {
                    success: { (dataTask: URLSessionDataTask, response: Any?) in
                     print("--- SUCCESS in USER TIMELINE: \(screen_name)")
                     if let responseArray = response as? [Dictionary <String, Any>]{
+                        print(responseArray)
                         let tweets = Tweet.tweetsWithArray(dictionaries: responseArray)
                         success(tweets)
                     }

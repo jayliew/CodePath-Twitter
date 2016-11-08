@@ -38,12 +38,12 @@ class Tweet: NSObject {
         }
 
         print("--- TWEET INIT DICT")
-        print(dictionary)
+        //print(dictionary)
         
         if let rt_status = dictionary["retweeted_status"] as? Dictionary<String, Any>{
             
             print("--- RTSTATUS: ")
-            print(rt_status)
+            //print(rt_status)
             
             if let retweeted = rt_status["retweeted"] as? Bool{
                 self.retweeted = retweeted

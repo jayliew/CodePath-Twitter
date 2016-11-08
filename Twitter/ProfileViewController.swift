@@ -24,10 +24,45 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     var user: User!
     var tweets: [Tweet]!
+    var screenNameToGet: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if self.user == nil {
+            if let sn = self.screenNameToGet{
+                print("--- SCREEN NAME RECEIVED INSIDE OF PROFILE VIEW CONTROLLLER")
+
+                TwitterClient.sharedInstance?.usersShow(screen_name: sn,
+                                                           success: {(u: User) in
+                                                            self.user = u
+                                                            self.doStuff()
+                },
+                                                           failure: {(error: Error?) in
+                                                            print("--- in PVC \(error?.localizedDescription)")
+                })
+
+            }
+        }else{
+            self.user = User.currentUser!
+            doStuff()
+        }
+        
+        
+
+    } // viewDidLoad
+    
+    func doStuff(){
+        TwitterClient.sharedInstance?.userTimeline(
+            screen_name: self.user.screen_name!,
+            success: { (tweets: [Tweet]) in
+                self.tweets = tweets
+                self.tableView.reloadData()
+        },
+            failure: { (error: Error?) in
+                print("---!!! USER TIMELINE FAILURE")
+        })
+
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -37,9 +72,7 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         tableView.estimatedRowHeight = 220
         
         tableView.register(UINib(nibName: "ReusableTweetCell", bundle: nil), forCellReuseIdentifier: "ReusableTweetCell")
-        
-        let user = User.currentUser!
-        
+
         nameLabel.text = user.name
         screenNameLabel.text = "@\(user.screen_name!)"
         
@@ -64,28 +97,16 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         if user.followersCount != nil {
             followersCount.text = "\(user.followersCount!)"
         }
-
+        
         if user.following != nil {
             followingCount.text = "\(user.following!)"
         }
-
+        
         if user.statusesCount != nil {
             statusesCount.text = "\(user.statusesCount!)"
         }
-        
-        
-        
-        TwitterClient.sharedInstance?.userTimeline(
-            screen_name: user.screen_name!,
-            success: { (tweets: [Tweet]) in
-                self.tweets = tweets
-                self.tableView.reloadData()
-            },
-            failure: { (error: Error?) in
-                print("---!!! USER TIMELINE FAILURE")
-            })
-        
-    } // viewDidLoad
+    
+    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReusableTweetCell", for: indexPath) as! ReusableTweetCell
